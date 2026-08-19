@@ -1,25 +1,48 @@
 {
-  "cleanUrls": true,
   "trailingSlash": false,
   "rewrites": [
-    { "source": "/en", "destination": "/index.html" },
-    { "source": "/tr", "destination": "/index.html" },
-    { "source": "/th", "destination": "/index.html" },
-    { "source": "/ru", "destination": "/index.html" },
-    { "source": "/zh", "destination": "/index.html" },
-    { "source": "/hi", "destination": "/index.html" }
+    {
+      "source": "/en",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/tr",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/th",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/ru",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/zh",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/hi",
+      "destination": "/index.html"
+    }
   ],
   "headers": [
     {
       "source": "/(assets|media)/(.*)",
       "headers": [
-        { "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=31536000, immutable"
+        }
       ]
     },
     {
       "source": "/i18n/(.*)",
       "headers": [
-        { "key": "Cache-Control", "value": "public, max-age=3600" }
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=3600"
+        }
       ]
     }
   ]
