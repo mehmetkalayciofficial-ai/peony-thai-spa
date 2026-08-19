@@ -409,7 +409,7 @@ button { background: none; border: 0; cursor: pointer; }
   align-items: center;
   gap: 10px;
   width: 100%;
-  min-height: 44px;
+  min-height: 46px;
   padding: 0 12px;
   border-radius: var(--r-sm);
   font-size: 14.5px;
@@ -870,10 +870,19 @@ button { background: none; border: 0; cursor: pointer; }
 
 .dots { display: flex; justify-content: center; gap: 8px; margin-top: 40px; }
 .dots button {
+  position: relative;
   width: 8px; height: 8px;
   border-radius: 50%;
   background: var(--line);
   transition: transform .35s var(--ease), background-color .35s var(--ease-soft), width .35s var(--ease);
+}
+/* Invisible 44px target around the 8px dot */
+.dots button::after {
+  content: "";
+  position: absolute;
+  left: 50%; top: 50%;
+  width: 44px; height: 44px;
+  transform: translate(-50%, -50%);
 }
 .dots button[aria-current="true"] {
   width: 26px;
