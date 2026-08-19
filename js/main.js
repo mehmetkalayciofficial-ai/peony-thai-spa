@@ -346,8 +346,11 @@
     v.addEventListener('error', fallback);
     $$('source', v).forEach(function (s) { s.addEventListener('error', fallback); });
 
-    // If nothing has loaded after a few seconds, show the still instead.
-    setTimeout(function () { if (v.readyState === 0) fallback(); }, 5000);
+    // Only swap in the still if the browser tells us there is no usable source.
+    // A slow connection is not a failure — the poster covers that on its own.
+    setTimeout(function () {
+      if (v.readyState === 0 && v.networkState === 3) fallback();
+    }, 8000);
 
     var play = v.play();
     if (play && play.catch) play.catch(function () { /* poster stays visible */ });
