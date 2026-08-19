@@ -113,18 +113,18 @@ insert into testimonials (position, author, role, body) values
   (2, '-doldurulacak-', '-doldurulacak-', '{"th": "ฉันนวดแผนไทยมาเยอะมากตลอดหลายปี ที่นี่คือของจริง เทคนิคถูกต้อง น้ำหนักมือพอดี และนักบำบัดที่รับฟังจริง ๆ", "en": "I have had a lot of Thai massage over the years. This is the real thing: proper technique, proper pressure, and a therapist who actually listens.", "tr": "Yıllar içinde çok Tayland masajı yaptırdım. Bu gerçek olanı: doğru teknik, doğru basınç ve gerçekten dinleyen bir terapist.", "ru": "За годы я перепробовал много тайского массажа. Здесь всё настоящее: верная техника, верное давление и мастер, который действительно слушает.", "zh": "这些年我做过很多泰式按摩。这里是货真价实的：手法对、力度对，理疗师也是真的在听你说话。", "hi": "इन वर्षों में मैंने बहुत थाई मसाज करवाई है। यह असली वाली है: सही तकनीक, सही दबाव, और एक थेरेपिस्ट जो वाकई सुनता है।"}'::jsonb);
 
 insert into gallery (position, image_url, category) values
-  (0, 'media/gallery-01.jpg', 'space'),
-  (1, 'media/gallery-02.jpg', 'space'),
-  (2, 'media/gallery-03.jpg', 'details'),
-  (3, 'media/gallery-04.jpg', 'details'),
-  (4, 'media/gallery-05.jpg', 'details'),
-  (5, 'media/gallery-06.jpg', 'details'),
-  (6, 'media/gallery-07.jpg', 'details'),
-  (7, 'media/gallery-08.jpg', 'details'),
-  (8, 'media/gallery-09.jpg', 'details'),
-  (9, 'media/gallery-10.jpg', 'details'),
-  (10, 'media/gallery-11.jpg', 'details'),
-  (11, 'media/gallery-12.jpg', 'details');
+  (0, 'media/gallery-01.jpg?v=1', 'space'),
+  (1, 'media/gallery-02.jpg?v=1', 'space'),
+  (2, 'media/gallery-03.jpg?v=1', 'details'),
+  (3, 'media/gallery-04.jpg?v=1', 'details'),
+  (4, 'media/gallery-05.jpg?v=1', 'details'),
+  (5, 'media/gallery-06.jpg?v=1', 'details'),
+  (6, 'media/gallery-07.jpg?v=1', 'details'),
+  (7, 'media/gallery-08.jpg?v=1', 'details'),
+  (8, 'media/gallery-09.jpg?v=1', 'details'),
+  (9, 'media/gallery-10.jpg?v=1', 'details'),
+  (10, 'media/gallery-11.jpg?v=1', 'details'),
+  (11, 'media/gallery-12.jpg?v=1', 'details');
 
 insert into settings (key, value) values
   ('phone', ''),
@@ -143,12 +143,12 @@ insert into settings (key, value) values
   ('stat1', '-doldurulacak-'),
   ('stat2', '-doldurulacak-'),
   ('stat3', '-doldurulacak-'),
-  ('hero_video', 'media/hero.mp4'),
-  ('hero_poster', 'media/hero-poster.jpg'),
-  ('about_inline', 'media/about-inline.jpg'),
-  ('about_1', 'media/about-1.jpg'),
-  ('about_2', 'media/about-2.jpg'),
-  ('about_3', 'media/about-3.jpg'),
+  ('hero_video', 'media/hero.mp4?v=1'),
+  ('hero_poster', 'media/hero-poster.jpg?v=1'),
+  ('about_inline', 'media/about-inline.jpg?v=1'),
+  ('about_1', 'media/about-1.jpg?v=1'),
+  ('about_2', 'media/about-2.jpg?v=1'),
+  ('about_3', 'media/about-3.jpg?v=1'),
   ('ambience', 'assets/art/ambience-band.svg'),
   ('footer_bg', 'assets/art/footer-pattern.svg')
 on conflict (key) do update set value = excluded.value;
