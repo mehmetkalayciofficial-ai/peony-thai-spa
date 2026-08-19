@@ -1,4 +1,5 @@
 User-agent: *
 Disallow: /admin.html
+Disallow: /gallery.html
 Disallow: /supabase/
 Allow: /
