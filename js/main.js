@@ -29,14 +29,14 @@
 
   /* Media + metadata that never changes with language. */
   var SERVICES = [
-    { id: 'thai',   img: 'media/svc-thai.jpg'   },
-    { id: 'oil',    img: 'media/svc-oil.jpg'    },
-    { id: 'aroma',  img: 'media/svc-aroma.jpg'  },
-    { id: 'foot',   img: 'media/svc-foot.jpg'   },
-    { id: 'back',   img: 'media/svc-back.jpg'   },
-    { id: 'herbal', img: 'media/svc-herbal.jpg' },
-    { id: 'scrub',  img: 'media/svc-scrub.jpg'  },
-    { id: 'facial', img: 'media/svc-facial.jpg' }
+    { id: 'thai',   img: 'assets/art/svc-thai.svg'   },
+    { id: 'oil',    img: 'assets/art/svc-oil.svg'    },
+    { id: 'aroma',  img: 'assets/art/svc-aroma.svg'  },
+    { id: 'foot',   img: 'assets/art/svc-foot.svg'   },
+    { id: 'back',   img: 'assets/art/svc-back.svg'   },
+    { id: 'herbal', img: 'assets/art/svc-herbal.svg' },
+    { id: 'scrub',  img: 'assets/art/svc-scrub.svg'  },
+    { id: 'facial', img: 'assets/art/svc-facial.svg' }
   ];
 
   var TBD = '<span class="tbd">-doldurulacak-</span>';
