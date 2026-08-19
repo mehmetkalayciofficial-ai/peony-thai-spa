@@ -1,0 +1,221 @@
+{
+  "meta": {
+    "title": "Peony Thai Massage & Spa",
+    "description": "Geleneksel Tayland terapileri, aromatik yağ ritüelleri ve sessiz, aceleye getirilmeyen bir bakım."
+  },
+  "nav": {
+    "about": "Hakkımızda",
+    "services": "Uygulamalar",
+    "plans": "Paketler",
+    "gallery": "Galeri",
+    "faq": "S.S.S.",
+    "contact": "İletişim",
+    "book": "Randevu Al"
+  },
+  "hero": {
+    "eyebrow": "Tayland Masajı &amp; Spa",
+    "title": "Acelesi olmayan geleneksel Tayland masajı",
+    "text": "Geleneksel Tayland tekniğinin sıcak yağlar, bitkisel kompresler ve acelesiz bir ilgiyle buluştuğu sessiz bir sığınak — bedeniniz ve zihniniz yeniden yerine otursun diye.",
+    "cta1": "Randevu Al",
+    "cta2": "Uygulamaları Gör",
+    "scroll": "Kaydır"
+  },
+  "about": {
+    "eyebrow": "Peony Hakkında",
+    "title1": "Sakin, aceleye",
+    "title2": "gelmeyen bir bakım",
+    "text": "Peony tek bir fikir üzerine kurulmuş küçük bir Tayland spası: gerçek dinlenme acele edilerek olmaz. Terapistlerimiz geleneksel Tayland tekniğinde eğitimli; sıcak yağlar, bitkisel kompresler ve dengeli basınçla, bilinçli olarak sessiz tutulan odalarda çalışıyorlar.",
+    "cta": "Mekânı gör",
+    "stat1": "Yıllık deneyim",
+    "stat2": "Sertifikalı terapist",
+    "stat3": "Ağırlanan misafir"
+  },
+  "services": {
+    "eyebrow": "Uygulamalar",
+    "title": "Bugün nasıl hissettiğinize göre seçilir",
+    "text": "Her uygulama kısa bir sohbetle başlar; böylece basınç, yağ ve tempo bir menüye değil size göre ayarlanır."
+  },
+  "svc": {
+    "thai": {
+      "name": "Geleneksel Tayland Masajı",
+      "desc": "Minder üzerinde, eşlikli esnetmeler ve vücudun enerji hatları boyunca ritmik basınçla uygulanan kuru masaj."
+    },
+    "oil": {
+      "name": "Tayland Yağ Masajı",
+      "desc": "Sıcak yağla uzun, akıcı hareketler; gergin kası yumuşatır, huzursuz zihni susturur."
+    },
+    "aroma": {
+      "name": "Aroma Terapi Masajı",
+      "desc": "Size özel seçilen uçucu yağ karışımıyla nazik bir çalışma — sakinleştirici, canlandırıcı ya da dengeleyici."
+    },
+    "foot": {
+      "name": "Ayak Refleksolojisi",
+      "desc": "Ayak ve alt bacaktaki refleks noktalarına odaklı basınç. Derinden yere basma hissi verir."
+    },
+    "back": {
+      "name": "Sırt, Boyun &amp; Omuz",
+      "desc": "Masa başı, ekran ve uzun yol yüzünden biriken gerginlik için kısa ve hedefli bir seans."
+    },
+    "herbal": {
+      "name": "Bitkisel Kompres",
+      "desc": "Buharda ısıtılmış Tayland bitki keseleri kasa bastırılır — sıcak, aromatik ve yavaş."
+    },
+    "scrub": {
+      "name": "Vücut Peelingi",
+      "desc": "Mineral ve bitkisel peeling; matlaşmış cildi arındırır, pürüzsüz ve yumuşak bırakır."
+    },
+    "facial": {
+      "name": "Yüz Bakım Ritüeli",
+      "desc": "Temizlik, nazik masaj ve besleyici bir maske; serin bitkisel kompresle tamamlanır."
+    }
+  },
+  "band": {
+    "eyebrow": "Oda",
+    "quote": "Loş ışık, sıcak havlular ve duvarda saat yok."
+  },
+  "plans": {
+    "eyebrow": "Paketler",
+    "title": "Sade ve dürüst fiyatlandırma",
+    "text": "Bizimle vakit geçirmenin üç yolu. Kasada ek satış yok, sürpriz yok.",
+    "badge": "En çok tercih edilen",
+    "cta": "Bunu seç",
+    "items": [
+      {
+        "name": "Temel",
+        "note": "Zamanın kısıtlı, gerginliğin bol olduğu günler için kısa bir sıfırlama.",
+        "items": [
+          "Sırt, boyun ve omuz odaklı",
+          "Sıcak havlu bitişi",
+          "Sonrasında bitki çayı",
+          "Tek terapist"
+        ]
+      },
+      {
+        "name": "İmza",
+        "note": "Tüm vücut ritüelimiz — misafirlerin en çok geri döndüğü seçenek.",
+        "items": [
+          "Tüm vücut Tayland ya da yağ masajı",
+          "Seçtiğiniz aroma terapi yağı",
+          "Ayak refleksolojisi bitişi",
+          "İstenirse bitkisel kompres",
+          "Sonrasında bitki çayı"
+        ]
+      },
+      {
+        "name": "İnziva",
+        "note": "Bir süreliğine kaybolmak istediğiniz, acelesiz bir yarım gün.",
+        "items": [
+          "Tüm vücut masajı",
+          "Vücut peelingi",
+          "Yüz bakım ritüeli",
+          "Ayak refleksolojisi",
+          "Özel oda",
+          "İkramlar dâhil"
+        ]
+      }
+    ]
+  },
+  "quotes": {
+    "eyebrow": "Misafir Notları",
+    "title": "Sonrasında söyledikleri",
+    "items": [
+      {
+        "text": "İçeri bir haftalık teslim tarihiyle girdim, onlarsız çıktım. Terapist ben tek kelime etmeden omzumdaki gerginliği okudu.",
+        "name": "-doldurulacak-",
+        "role": "-doldurulacak-"
+      },
+      {
+        "text": "Aylardır geçirdiğim en sessiz saatti. Ne acele vardı ne de ek satış çabası — sadece gerçekten usta eller ve insanı kapatan bir oda.",
+        "name": "-doldurulacak-",
+        "role": "-doldurulacak-"
+      },
+      {
+        "text": "Yıllar içinde çok Tayland masajı yaptırdım. Bu gerçek olanı: doğru teknik, doğru basınç ve gerçekten dinleyen bir terapist.",
+        "name": "-doldurulacak-",
+        "role": "-doldurulacak-"
+      }
+    ]
+  },
+  "faq": {
+    "eyebrow": "Bilmekte Fayda Var",
+    "title": "Sık sorulan sorular",
+    "items": [
+      {
+        "q": "Önceden randevu almam gerekiyor mu?",
+        "a": "Özellikle akşam saatleri ve hafta sonları için öneririz. Terapist müsait olduğunda randevusuz da kabul ediyoruz, ancak randevu istediğiniz odayı ve saati garantiler."
+      },
+      {
+        "q": "Ne giymeliyim?",
+        "a": "Geleneksel Tayland masajı için üzerinizi değiştireceğiniz bol pamuklu kıyafet veriyoruz. Yağlı uygulamalarda rahat ettiğiniz kadar soyunursunuz ve seans boyunca havluyla örtülü kalırsınız."
+      },
+      {
+        "q": "Ne kadar erken gelmeliyim?",
+        "a": "Randevunuzdan on dakika önce yeterli. Üzerinizi değiştirmeye, bir fincan çay içmeye ve terapistinize bugün bedeninizin neye ihtiyacı olduğunu anlatmaya vakit kalır."
+      },
+      {
+        "q": "İlk kez gelen biri için uygun mu?",
+        "a": "Fazlasıyla. İlk ziyaretiniz olduğunu söyleyin; terapistiniz nazik başlar, her aşamayı anlatır ve ilerledikçe basıncı ayarlar. Hiçbir aşamada canınız yanmamalı."
+      },
+      {
+        "q": "Basıncı ben seçebilir miyim?",
+        "a": "Her zaman. Hafif, orta ya da sert — üstelik seansın ortasında fikrinizi değiştirebilirsiniz. Söylemeniz yeterli; terapistiniz sizin katlanmanızdansa ayar yapmayı çok daha çok ister."
+      },
+      {
+        "q": "İptal koşullarınız nedir?",
+        "a": "En az birkaç saat önceden haber verin, hiçbir ücret alınmaz. Hayat işte; odayı boş bırakmaktansa saati başka birine açmayı tercih ederiz."
+      }
+    ]
+  },
+  "gal": {
+    "eyebrow": "Galeri",
+    "title": "İçeriden bir bakış",
+    "cta": "Tüm galeriyi gör"
+  },
+  "gallery": {
+    "eyebrow": "Galeri",
+    "title": "Mekân, detaylar ve sükûnet",
+    "text": "Peony'nin içinden birkaç an — uygulama odaları, küçük ritüeller ve aradaki sessiz köşeler.",
+    "all": "Tümü",
+    "space": "Mekân",
+    "treatments": "Uygulamalar",
+    "details": "Detaylar"
+  },
+  "contact": {
+    "eyebrow": "İletişim",
+    "title": "Gelin, bizi bulun",
+    "text": "Aşağıdan talebinizi gönderin, randevunuzu kısa sürede teyit edelim; ya da açık olduğumuz saatlerde doğrudan arayın.",
+    "address": "Adres",
+    "phone": "Telefon &amp; e-posta",
+    "hours": "Çalışma saatleri",
+    "formTitle": "Randevu talebi oluşturun",
+    "form": {
+      "name": "Ad soyad",
+      "namePh": "Adınız",
+      "phone": "Telefon",
+      "phonePh": "Size ulaşabileceğimiz numara",
+      "service": "Uygulama",
+      "servicePick": "Bir uygulama seçin",
+      "date": "Tercih ettiğiniz tarih",
+      "time": "Tercih ettiğiniz saat",
+      "notes": "Bilmemiz gereken bir şey",
+      "notesPh": "Sakatlık, basınç tercihi, ilk ziyaret…",
+      "submit": "Talebi gönder",
+      "note": "Telefon ya da mesajla teyit ediyoruz. Çevrim içi ödeme alınmaz.",
+      "sent": "Teşekkürler — talebiniz alındı. Kısa süre içinde size dönüş yapacağız."
+    },
+    "mapNote": "Harita — -doldurulacak-"
+  },
+  "foot": {
+    "ctaEyebrow": "Rezervasyon",
+    "ctaTitle": "Kendinize bir saat ayırın",
+    "ctaText": "Yer olduğunda randevusuz misafirlerimizi de ağırlıyoruz; ama önceden randevu almak oda, terapist ve saatin baştan sizin olması demek.",
+    "ctaBtn": "Randevu Al",
+    "ctaCall": "Bizi arayın",
+    "hours": "Çalışma saatleri",
+    "weekdays": "Pazartesi – Cuma",
+    "weekend": "Cumartesi – Pazar",
+    "visit": "Ziyaret &amp; arama",
+    "follow": "Takip edin",
+    "rights": "© 2026 Peony Thai Massage &amp; Spa. Tüm hakları saklıdır."
+  }
+}

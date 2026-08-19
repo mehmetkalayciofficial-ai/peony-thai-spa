@@ -1,0 +1,221 @@
+{
+  "meta": {
+    "title": "Peony Thai Massage & Spa",
+    "description": "Traditional Thai therapies, aromatic oil rituals and quiet, unhurried care."
+  },
+  "nav": {
+    "about": "About",
+    "services": "Treatments",
+    "plans": "Packages",
+    "gallery": "Gallery",
+    "faq": "FAQ",
+    "contact": "Contact",
+    "book": "Book Appointment"
+  },
+  "hero": {
+    "eyebrow": "Thai Massage &amp; Spa",
+    "title": "Traditional Thai massage, without the rush",
+    "text": "A quiet retreat where traditional Thai technique meets warm oils, herbal compresses and unhurried attention — so your body and mind can settle again.",
+    "cta1": "Book Appointment",
+    "cta2": "Explore Treatments",
+    "scroll": "Scroll"
+  },
+  "about": {
+    "eyebrow": "About Peony",
+    "title1": "A calm, unhurried",
+    "title2": "kind of care",
+    "text": "Peony is a small Thai spa built around one idea — that real rest cannot be rushed. Our therapists are trained in traditional Thai technique and work with warm oils, herbal compresses and steady pressure, in rooms kept deliberately quiet.",
+    "cta": "See the space",
+    "stat1": "Years of practice",
+    "stat2": "Certified therapists",
+    "stat3": "Guests welcomed"
+  },
+  "services": {
+    "eyebrow": "Treatments",
+    "title": "Chosen for how you feel today",
+    "text": "Every treatment begins with a short conversation, so the pressure, oils and pace are matched to you rather than to a menu."
+  },
+  "svc": {
+    "thai": {
+      "name": "Traditional Thai Massage",
+      "desc": "Dry massage on a mat with guided stretching and rhythmic pressure along the body's energy lines."
+    },
+    "oil": {
+      "name": "Thai Oil Massage",
+      "desc": "Long, flowing strokes with warm oil to soften tight muscle and quiet a restless mind."
+    },
+    "aroma": {
+      "name": "Aromatherapy Massage",
+      "desc": "Gentle bodywork with an essential-oil blend chosen for you — calming, reviving or balancing."
+    },
+    "foot": {
+      "name": "Foot Reflexology",
+      "desc": "Focused pressure on the reflex points of the feet and lower legs. Deeply grounding."
+    },
+    "back": {
+      "name": "Back, Neck & Shoulders",
+      "desc": "A short, targeted session for the tension that builds from desks, screens and long drives."
+    },
+    "herbal": {
+      "name": "Herbal Compress",
+      "desc": "Steamed pouches of Thai herbs pressed into the muscle — warm, aromatic and slow."
+    },
+    "scrub": {
+      "name": "Body Scrub & Polish",
+      "desc": "A mineral and botanical scrub that lifts dull skin and leaves it smooth and soft."
+    },
+    "facial": {
+      "name": "Facial Ritual",
+      "desc": "Cleansing, gentle massage and a nourishing mask, finished with a cool herbal compress."
+    }
+  },
+  "band": {
+    "eyebrow": "The Room",
+    "quote": "Low light, warm towels, and no clock on the wall."
+  },
+  "plans": {
+    "eyebrow": "Packages",
+    "title": "Simple, honest pricing",
+    "text": "Three ways to spend your time with us. No add-ons at the counter, no surprises.",
+    "badge": "Most chosen",
+    "cta": "Book this",
+    "items": [
+      {
+        "name": "Essential",
+        "note": "A short reset when time is tight but tension is not.",
+        "items": [
+          "Back, neck & shoulder focus",
+          "Warm towel finish",
+          "Herbal tea afterwards",
+          "Single therapist"
+        ]
+      },
+      {
+        "name": "Signature",
+        "note": "Our full-body ritual — the one most guests come back for.",
+        "items": [
+          "Full body Thai or oil massage",
+          "Aromatherapy oil of your choice",
+          "Foot reflexology finish",
+          "Herbal compress on request",
+          "Herbal tea afterwards"
+        ]
+      },
+      {
+        "name": "Retreat",
+        "note": "An unhurried half-day for when you want to disappear for a while.",
+        "items": [
+          "Full body massage",
+          "Body scrub & polish",
+          "Facial ritual",
+          "Foot reflexology",
+          "Private room",
+          "Refreshments included"
+        ]
+      }
+    ]
+  },
+  "quotes": {
+    "eyebrow": "Guest Notes",
+    "title": "What people say afterwards",
+    "items": [
+      {
+        "text": "I walked in carrying a week of deadlines and walked out without them. The therapist read the tension in my shoulders before I said a word.",
+        "name": "-doldurulacak-",
+        "role": "-doldurulacak-"
+      },
+      {
+        "text": "The quietest hour I have had in months. Nothing rushed, nothing upsold — just genuinely skilled hands and a room that lets you switch off.",
+        "name": "-doldurulacak-",
+        "role": "-doldurulacak-"
+      },
+      {
+        "text": "I have had a lot of Thai massage over the years. This is the real thing: proper technique, proper pressure, and a therapist who actually listens.",
+        "name": "-doldurulacak-",
+        "role": "-doldurulacak-"
+      }
+    ]
+  },
+  "faq": {
+    "eyebrow": "Good to Know",
+    "title": "Frequently asked questions",
+    "items": [
+      {
+        "q": "Do I need to book in advance?",
+        "a": "We recommend it, especially in the evenings and at weekends. Walk-ins are welcome whenever a therapist is free, but booking guarantees the room and the time you want."
+      },
+      {
+        "q": "What should I wear?",
+        "a": "For traditional Thai massage we provide loose cotton clothing you change into. For oil treatments you undress to your comfort level and are covered with towels throughout."
+      },
+      {
+        "q": "How early should I arrive?",
+        "a": "Ten minutes before your appointment is plenty. It gives you time to change, have a cup of tea, and tell your therapist what your body needs today."
+      },
+      {
+        "q": "Is it suitable for a first-time guest?",
+        "a": "Very much so. Tell us it is your first visit and your therapist will start gently, explain each stage and adjust the pressure as you go. Nothing should ever hurt."
+      },
+      {
+        "q": "Can I choose the pressure?",
+        "a": "Always. Light, medium or firm — and you can change your mind halfway through. Just say the word; your therapist would far rather adjust than have you endure."
+      },
+      {
+        "q": "What is your cancellation policy?",
+        "a": "Let us know at least a few hours ahead and there is no charge at all. Life happens; we would simply rather offer the slot to someone else than leave the room empty."
+      }
+    ]
+  },
+  "gal": {
+    "eyebrow": "Gallery",
+    "title": "A look inside",
+    "cta": "View full gallery"
+  },
+  "gallery": {
+    "eyebrow": "Gallery",
+    "title": "The space, the details, the calm",
+    "text": "A few moments from inside Peony — the treatment rooms, the small rituals, and the quiet corners in between.",
+    "all": "All",
+    "space": "The space",
+    "treatments": "Treatments",
+    "details": "Details"
+  },
+  "contact": {
+    "eyebrow": "Contact",
+    "title": "Come and find us",
+    "text": "Send a request below and we will confirm your appointment shortly, or simply call us during opening hours.",
+    "address": "Address",
+    "phone": "Phone & email",
+    "hours": "Opening hours",
+    "formTitle": "Request an appointment",
+    "form": {
+      "name": "Full name",
+      "namePh": "Your name",
+      "phone": "Phone",
+      "phonePh": "Best number to reach you",
+      "service": "Treatment",
+      "servicePick": "Choose a treatment",
+      "date": "Preferred date",
+      "time": "Preferred time",
+      "notes": "Anything we should know",
+      "notesPh": "Injuries, pressure preference, first visit…",
+      "submit": "Send request",
+      "note": "We will confirm by phone or message. No payment is taken online.",
+      "sent": "Thank you — your request has been noted. We will be in touch shortly."
+    },
+    "mapNote": "Map — -doldurulacak-"
+  },
+  "foot": {
+    "ctaEyebrow": "Reservations",
+    "ctaTitle": "Keep an hour for yourself",
+    "ctaText": "Walk-ins are welcome when we have space, but booking ahead means the room, the therapist and the time are already yours.",
+    "ctaBtn": "Book Appointment",
+    "ctaCall": "Call us",
+    "hours": "Opening hours",
+    "weekdays": "Monday – Friday",
+    "weekend": "Saturday – Sunday",
+    "visit": "Visit &amp; call",
+    "follow": "Follow",
+    "rights": "© 2026 Peony Thai Massage &amp; Spa. All rights reserved."
+  }
+}
