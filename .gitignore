@@ -4,3 +4,4 @@ node_modules
 *.log
 _sheet*.svg
 _art.html
+_admintest.html

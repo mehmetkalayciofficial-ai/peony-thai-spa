@@ -160,8 +160,26 @@
       });
   }
 
+  /* Supabase içeriği geldiğinde sözlüğün üzerine yazmak için. */
+  function deepSet(obj, path, val) {
+    var parts = path.split('.'), n = obj, i;
+    for (i = 0; i < parts.length - 1; i++) {
+      if (typeof n[parts[i]] !== 'object' || n[parts[i]] === null) n[parts[i]] = {};
+      n = n[parts[i]];
+    }
+    n[parts[parts.length - 1]] = val;
+  }
+
   window.I18N = {
     langs: LANGS,
+    /* patch: {"hero.title": "..."} — lists: {"faq.items": [...]} */
+    override: function (patch, lists) {
+      var k;
+      for (k in (patch || {})) deepSet(dict, k, patch[k]);
+      for (k in (lists || {})) deepSet(dict, k, lists[k]);
+      apply();
+      document.dispatchEvent(new CustomEvent('peony:content'));
+    },
     t: function (key, fb) {
       var v = get(key);
       return typeof v === 'string' ? v : (fb !== undefined ? fb : key);

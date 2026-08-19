@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Yönetim — Peony Thai Massage &amp; Spa</title>
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#2C3428">
+
+<link rel="icon" type="image/png" href="assets/favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/admin.css">
+</head>
+<body>
+
+<!-- ===================== GİRİŞ ===================== -->
+<div class="login" id="login">
+  <div class="login__card">
+    <img src="assets/logo-full.png" alt="Peony">
+    <h1>Yönetim paneli</h1>
+    <p>Site içeriğini düzenlemek için giriş yapın.</p>
+
+    <div class="setup hidden" id="setupWarn" style="text-align:left;margin-top:22px">
+      <h3>Supabase bağlantısı yok</h3>
+      <p>Panelin çalışması için <code>js/supabase-config.js</code> dosyasındaki
+         iki değeri doldurun (Supabase → Project Settings → API).</p>
+    </div>
+
+    <form id="loginForm">
+      <div class="f">
+        <label for="lgEmail">E-posta</label>
+        <input id="lgEmail" type="email" autocomplete="username" required>
+      </div>
+      <div class="f">
+        <label for="lgPass">Parola</label>
+        <input id="lgPass" type="password" autocomplete="current-password" required>
+      </div>
+      <button class="b" type="submit" id="lgBtn">Giriş yap</button>
+    </form>
+  </div>
+</div>
+
+<!-- ===================== PANEL ===================== -->
+<div class="shell hidden" id="shell">
+
+  <aside class="side">
+    <div class="side__logo"><img src="assets/logo-wide.png" alt="Peony"></div>
+
+    <nav id="tabs">
+      <button data-tab="texts" class="on">
+        <svg width="17" height="17" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M4 5h12M4 10h12M4 15h7"/></svg>
+        <span>Metinler</span>
+      </button>
+      <button data-tab="services">
+        <svg width="17" height="17" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 15h14M5 15c1-5 4-7 5-7s4 2 5 7"/><circle cx="10" cy="5" r="2"/></svg>
+        <span>Hizmetler</span>
+      </button>
+      <button data-tab="plans">
+        <svg width="17" height="17" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"><rect x="3" y="4" width="14" height="12" rx="2"/><path d="M3 8h14"/></svg>
+        <span>Paketler</span>
+      </button>
+      <button data-tab="faqs">
+        <svg width="17" height="17" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><circle cx="10" cy="10" r="7.5"/><path d="M8 8a2 2 0 1 1 2.6 1.9c-.4.2-.6.6-.6 1V11"/><path d="M10 14h.01"/></svg>
+        <span>S.S.S.</span>
+      </button>
+      <button data-tab="quotes">
+        <svg width="17" height="17" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"><path d="M4 5h12v9H8l-4 3V5z"/></svg>
+        <span>Yorumlar</span>
+      </button>
+      <button data-tab="gallery">
+        <svg width="17" height="17" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"><rect x="3" y="4" width="14" height="12" rx="2"/><path d="M3 13l4-3 3 2 3-3 4 3"/><circle cx="7.5" cy="8" r="1.2"/></svg>
+        <span>Galeri</span>
+      </button>
+      <button data-tab="media">
+        <svg width="17" height="17" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"><rect x="2.5" y="4" width="15" height="12" rx="2"/><path d="M8.5 8l4 2-4 2V8z"/></svg>
+        <span>Görseller</span>
+      </button>
+      <button data-tab="contact">
+        <svg width="17" height="17" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M10 17.5s5.5-4.6 5.5-9a5.5 5.5 0 1 0-11 0c0 4.4 5.5 9 5.5 9z"/><circle cx="10" cy="8.3" r="2"/></svg>
+        <span>İletişim</span>
+      </button>
+    </nav>
+
+    <div class="side__foot">
+      <div class="side__who" id="who"></div>
+      <button type="button" id="viewSite">↗ Siteyi aç</button>
+      <button type="button" id="logout">Çıkış yap</button>
+    </div>
+  </aside>
+
+  <main class="main">
+    <div class="head">
+      <div>
+        <h2 id="paneTitle">Metinler</h2>
+        <p id="paneNote"></p>
+      </div>
+      <div class="head__side" id="paneTools"></div>
+    </div>
+
+    <div class="langbar" id="langbar"></div>
+
+    <div id="pane"></div>
+
+    <div class="savebar">
+      <span class="status" id="status">Değişiklik yok</span>
+      <button class="b" type="button" id="save" disabled>Kaydet</button>
+    </div>
+  </main>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"></script>
+<script src="js/supabase-config.js"></script>
+<script src="js/admin.js"></script>
+</body>
+</html>

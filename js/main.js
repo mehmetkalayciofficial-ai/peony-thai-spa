@@ -27,8 +27,9 @@
               '<path d="M1 6h13M9.5 1.5 14 6l-4.5 4.5" stroke="currentColor" stroke-width="1.4" ' +
               'stroke-linecap="round" stroke-linejoin="round"/></svg>';
 
-  /* Media + metadata that never changes with language. */
-  var SERVICES = [
+  /* Yerel varsayilanlar. Supabase yapilandirilmissa bunlarin yerini
+     window.PEONY_DATA.services alir. */
+  var SERVICES_DEFAULT = [
     { id: 'thai',   img: 'assets/art/svc-thai.svg'   },
     { id: 'oil',    img: 'assets/art/svc-oil.svg'    },
     { id: 'aroma',  img: 'assets/art/svc-aroma.svg'  },
@@ -40,6 +41,13 @@
   ];
 
   var TBD = '<span class="tbd">-doldurulacak-</span>';
+
+  function services() {
+    var d = window.PEONY_DATA;
+    return (d && d.services && d.services.length) ? d.services : SERVICES_DEFAULT;
+  }
+  function slugOf(s) { return s.slug || s.id; }
+  function cell(v) { return (v && String(v).trim()) ? String(v) : TBD; }
 
   /* ======================================================================
      Reveal on scroll
@@ -166,15 +174,18 @@
     var grid = $('#svcGrid');
     if (!grid) return;
 
-    grid.innerHTML = SERVICES.map(function (s, i) {
+    grid.innerHTML = services().map(function (s, i) {
       var d = Math.min(i, 3) * 90;
+      var slug = slugOf(s);
       return '' +
       '<article class="svc reveal" style="--d:' + d + 'ms">' +
         '<div class="svc__media">' + img(s.img) + '</div>' +
         '<div class="svc__body">' +
-          '<h3>' + I18N.t('svc.' + s.id + '.name') + '</h3>' +
-          '<p>' + I18N.t('svc.' + s.id + '.desc') + '</p>' +
-          '<div class="svc__meta"><span>' + TBD + '</span><span>' + TBD + '</span></div>' +
+          '<h3>' + I18N.t('svc.' + slug + '.name') + '</h3>' +
+          '<p>' + I18N.t('svc.' + slug + '.desc') + '</p>' +
+          '<div class="svc__meta">' +
+            '<span>' + cell(s.duration) + '</span><span>' + cell(s.price) + '</span>' +
+          '</div>' +
         '</div>' +
       '</article>';
     }).join('');
@@ -188,7 +199,7 @@
 
     var plans = I18N.list('plans.items');
     grid.innerHTML = plans.map(function (p, i) {
-      var feature = i === 1;
+      var feature = (typeof p.featured === 'boolean') ? p.featured : (i === 1);
       var items = (p.items || []).map(function (t) {
         return '<li>' + CHECK + '<span>' + t + '</span></li>';
       }).join('');
@@ -199,8 +210,8 @@
         '<h3>' + p.name + '</h3>' +
         '<p class="plan__note">' + p.note + '</p>' +
         '<div class="plan__price">' +
-          '<span class="amt">' + TBD + '</span>' +
-          '<span class="per">' + TBD + '</span>' +
+          '<span class="amt">' + cell(p.price) + '</span>' +
+          '<span class="per">' + cell(p.per) + '</span>' +
         '</div>' +
         '<ul>' + items + '</ul>' +
         '<a class="btn' + (feature ? '' : ' btn--ghost') + '" href="contact.html">' +
@@ -227,7 +238,7 @@
       '<div class="quotes__slide">' +
         '<div class="stars" aria-label="5 / 5">' + STAR + STAR + STAR + STAR + STAR + '</div>' +
         '<blockquote>“' + q.text + '”</blockquote>' +
-        '<cite>' + q.name + '<small>' + q.role + '</small></cite>' +
+        '<cite>' + cell(q.name) + '<small>' + cell(q.role) + '</small></cite>' +
       '</div>';
     }).join('');
 
@@ -434,8 +445,9 @@
     var keep = sel.value;
     sel.innerHTML = '<option value="" disabled selected>' +
                     I18N.t('contact.form.servicePick') + '</option>' +
-      SERVICES.map(function (s) {
-        return '<option value="' + s.id + '">' + I18N.t('svc.' + s.id + '.name') + '</option>';
+      services().map(function (s) {
+        var slug = slugOf(s);
+        return '<option value="' + slug + '">' + I18N.t('svc.' + slug + '.name') + '</option>';
       }).join('');
     if (keep) sel.value = keep;
   }
@@ -488,4 +500,14 @@
     renderAll();
     observeReveals();
   });
+
+  // Supabase icerigi geldiginde
+  document.addEventListener('peony:content', function () {
+    renderAll();
+    observeReveals();
+  });
+
+  // Galeri/mozaik yeniden cizildiginde
+  document.addEventListener('peony:gallery', function () { initGallery(); observeReveals(); });
+  document.addEventListener('peony:mosaic',  function () { observeReveals(); });
 })();
