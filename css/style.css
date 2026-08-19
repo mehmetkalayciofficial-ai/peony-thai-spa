@@ -500,6 +500,8 @@ button { background: none; border: 0; cursor: pointer; }
   position: absolute;
   inset: 0;
   z-index: -2;
+  /* Last-resort still: shows even if both the video and its poster fail. */
+  background: var(--green-deep) url("../media/hero-poster.jpg") center / cover no-repeat;
 }
 .hero__media video,
 .hero__media img {
