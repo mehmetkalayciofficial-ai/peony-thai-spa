@@ -295,6 +295,16 @@ button { background: none; border: 0; cursor: pointer; }
   color: var(--ink);
 }
 
+/* Menü açıkken arkasındaki panel beyaz olur — navbar da açık temaya geçmeli,
+   yoksa beyaz logo beyaz zeminde kaybolur. */
+.nav.is-open .nav__inner {
+  background: rgba(255, 255, 255, .9);
+  border-color: var(--line);
+  color: var(--ink);
+}
+.nav.is-open .nav__logo img { filter: none; }
+.nav.is-open .nav__cta { --btn-bg: var(--green); --btn-fg: #fff; }
+
 /* On light pages the navbar starts in its light state */
 .nav--light .nav__inner {
   background: rgba(255,255,255,.82);
@@ -480,7 +490,17 @@ button { background: none; border: 0; cursor: pointer; }
 }
 .drawer.is-open a { opacity: 1; transform: translateY(0); }
 .drawer a:hover { color: var(--green); }
-.drawer .btn { margin-top: 24px; }
+
+/* Buton da bir <a> — yukarıdaki büyük menü puntosu ona uymaz */
+.drawer .btn {
+  margin-top: 28px;
+  padding: 0 34px;
+  min-height: 54px;
+  font-size: 15.5px;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+}
+.drawer .btn:hover { color: #fff; }
 
 /* ==========================================================================
    Hero
@@ -1350,7 +1370,9 @@ button { background: none; border: 0; cursor: pointer; }
   .nav__links { display: none; }
   .nav__burger { display: flex; }
   .nav .btn--cta-desktop { display: none; }
-  .nav__inner { padding-right: 8px; }
+  /* Ortalayıcı .nav__links gizlenince sağ grubu kenara iten şey kalmıyor */
+  .nav__side { margin-left: auto; }
+  .nav__inner { padding: 0 12px 0 20px; }
 
   .plans { grid-template-columns: 1fr; max-width: 480px; margin-inline: auto; }
   .plan--feature { order: -1; }
