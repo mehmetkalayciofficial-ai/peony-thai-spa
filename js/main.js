@@ -326,34 +326,29 @@
   }
 
   /* ======================================================================
-     Hero video — fall back to the poster if it cannot play
+     Hero video — the poster attribute already covers slow or blocked
+     playback, so never tear the element out of the DOM.
      ====================================================================== */
   function initHeroVideo() {
     var v = $('.hero__media video');
     if (!v) return;
 
-    var fallback = function () {
+    // Autoplay can be refused (data saver, reduced motion, power saving).
+    // That is fine: the poster frame stays on screen.
+    var play = v.play();
+    if (play && play.catch) play.catch(function () {});
+
+    // Only if the browser reports it has no usable source at all do we fall
+    // back to a plain image, so the hero is never an empty block.
+    v.addEventListener('error', function () {
       if (v.dataset.failed) return;
       v.dataset.failed = '1';
-      var poster = v.getAttribute('poster');
       var el = document.createElement('img');
-      el.src = poster || PH;
+      el.src = v.getAttribute('poster') || PH;
       el.alt = '';
       el.onerror = function () { el.onerror = null; el.src = PH; };
       v.replaceWith(el);
-    };
-
-    v.addEventListener('error', fallback);
-    $$('source', v).forEach(function (s) { s.addEventListener('error', fallback); });
-
-    // Only swap in the still if the browser tells us there is no usable source.
-    // A slow connection is not a failure — the poster covers that on its own.
-    setTimeout(function () {
-      if (v.readyState === 0 && v.networkState === 3) fallback();
-    }, 8000);
-
-    var play = v.play();
-    if (play && play.catch) play.catch(function () { /* poster stays visible */ });
+    });
   }
 
   /* ======================================================================
