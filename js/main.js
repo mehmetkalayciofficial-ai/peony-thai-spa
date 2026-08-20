@@ -168,6 +168,19 @@
   }
 
   /* ======================================================================
+     Yüzen WhatsApp butonu — hero geçildikten sonra belirir
+     ====================================================================== */
+  function initWhatsApp() {
+    var wa = $('.wa');
+    if (!wa) return;
+    var onScroll = function () {
+      wa.classList.toggle('is-in', window.scrollY > window.innerHeight * 0.6);
+    };
+    onScroll();
+    window.addEventListener('scroll', onScroll, { passive: true });
+  }
+
+  /* ======================================================================
      Dynamic sections (re-rendered on every language change)
      ====================================================================== */
   function renderServices() {
@@ -487,6 +500,7 @@
     initHeroVideo();
     initGallery();
     initForm();
+    initWhatsApp();
     renderAll();
   }
 

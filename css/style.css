@@ -1347,6 +1347,36 @@ button { background: none; border: 0; cursor: pointer; }
 .svc__media { background: var(--green-tint); }
 .svc__media img { object-fit: cover; }
 
+
+/* ==========================================================================
+   Yüzen WhatsApp butonu
+   ========================================================================== */
+.wa {
+  position: fixed;
+  left: clamp(16px, 3vw, 28px);
+  bottom: clamp(16px, 3vw, 28px);
+  z-index: 90;
+  display: grid;
+  place-items: center;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: var(--green);
+  color: #fff;
+  box-shadow: 0 10px 30px rgba(28, 31, 26, .28);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(14px) scale(.9);
+  transition: opacity .45s var(--ease), transform .45s var(--ease),
+              visibility .45s, box-shadow .3s var(--ease-soft);
+}
+/* Hero'da görünmez, sayfa kaydırılınca süzülerek gelir */
+.wa.is-in { opacity: 1; visibility: visible; transform: none; }
+.wa:hover { transform: translateY(-3px) scale(1.06); box-shadow: 0 16px 40px rgba(28, 31, 26, .34); }
+.wa:active { transform: translateY(0) scale(1); }
+
+@media (max-width: 520px) { .wa { width: 52px; height: 52px; } }
+
 /* ==========================================================================
    Reveal animation
    ========================================================================== */

@@ -127,22 +127,25 @@ insert into peony_gallery (position, image_url, category) values
   (11, 'media/gallery-12.jpg?v=1', 'details');
 
 insert into peony_settings (key, value) values
-  ('phone', ''),
-  ('phone_display', '-doldurulacak-'),
-  ('whatsapp', ''),
-  ('email', ''),
-  ('email_display', '-doldurulacak-'),
-  ('address_line1', '-doldurulacak-'),
-  ('address_line2', '-doldurulacak-'),
-  ('hours_weekday', '-doldurulacak-'),
-  ('hours_weekend', '-doldurulacak-'),
+  -- Aşağıdakilerin tamamı bariz sahte yer tutucudur; panelden değiştirilir.
+  -- Mekân Tayland'da olduğu için numaralar +66 biçiminde.
+  ('phone', '+66111111111'),
+  ('phone_display', '+66 11 111 1111'),
+  ('whatsapp', '+66 11 111 1111'),
+  ('email', 'hello@peonythaispa.com'),
+  ('email_display', 'hello@peonythaispa.com'),
+  ('address_line1', '111 Sukhumvit Road, Khlong Toei'),
+  ('address_line2', 'Bangkok 10110, Thailand'),
+  ('hours_weekday', '10:00 – 22:00'),
+  ('hours_weekend', '10:00 – 23:00'),
   ('instagram', '#'),
   ('facebook', '#'),
-  ('whatsapp_url', '#'),
-  ('map_embed', ''),
-  ('stat1', '-doldurulacak-'),
-  ('stat2', '-doldurulacak-'),
-  ('stat3', '-doldurulacak-'),
+  ('whatsapp_url', 'https://wa.me/66111111111'),
+  -- Bangkok, Sukhumvit. Panelden başka bir konumla değiştirilebilir.
+  ('map_embed', 'https://www.google.com/maps?q=13.7373,100.5608&z=16&output=embed'),
+  ('stat1', '11'),
+  ('stat2', '11'),
+  ('stat3', '1.111+'),
   ('hero_video', 'media/hero.mp4?v=1'),
   ('hero_poster', 'media/hero-poster.jpg?v=1'),
   ('about_inline', 'media/about-inline.jpg?v=1'),
@@ -152,3 +155,15 @@ insert into peony_settings (key, value) values
   ('ambience', 'assets/art/ambience-band.svg'),
   ('footer_bg', 'assets/art/footer-pattern.svg')
 on conflict (key) do update set value = excluded.value;
+
+-- Süreler gerçekçi, fiyatlar bariz sahte (tekrarlı rakam) — panelden değiştirilir.
+update peony_services set duration = '60 / 90 dk', price = '฿1.111'
+  where slug in ('thai','oil','aroma','herbal');
+update peony_services set duration = '45 / 60 dk', price = '฿1.111'
+  where slug in ('foot','scrub');
+update peony_services set duration = '30 / 45 dk', price = '฿1.111' where slug = 'back';
+update peony_services set duration = '60 dk',      price = '฿1.111' where slug = 'facial';
+
+update peony_plans set price = '฿1.111', per = '/60 dk'  where position = 0;
+update peony_plans set price = '฿2.222', per = '/90 dk'  where position = 1;
+update peony_plans set price = '฿3.333', per = '/180 dk' where position = 2;
