@@ -9,7 +9,7 @@ create extension if not exists "pgcrypto";
 -- 1. Serbest metinler (i18n anahtarlarıyla birebir aynı)
 --    value örneği: {"tr":"Peony ile...","en":"Traditional Thai..."}
 -- ---------------------------------------------------------------------
-create table if not exists content (
+create table if not exists peony_content (
   key        text primary key,
   value      jsonb not null default '{}'::jsonb,
   updated_at timestamptz not null default now()
@@ -18,7 +18,7 @@ create table if not exists content (
 -- ---------------------------------------------------------------------
 -- 2. Hizmetler
 -- ---------------------------------------------------------------------
-create table if not exists services (
+create table if not exists peony_services (
   id          uuid primary key default gen_random_uuid(),
   slug        text unique not null,
   position    int  not null default 0,
@@ -34,7 +34,7 @@ create table if not exists services (
 -- ---------------------------------------------------------------------
 -- 3. Paketler
 -- ---------------------------------------------------------------------
-create table if not exists plans (
+create table if not exists peony_plans (
   id         uuid primary key default gen_random_uuid(),
   position   int not null default 0,
   featured   boolean not null default false,
@@ -50,7 +50,7 @@ create table if not exists plans (
 -- ---------------------------------------------------------------------
 -- 4. Sık sorulan sorular
 -- ---------------------------------------------------------------------
-create table if not exists faqs (
+create table if not exists peony_faqs (
   id         uuid primary key default gen_random_uuid(),
   position   int not null default 0,
   question   jsonb not null default '{}'::jsonb,
@@ -62,7 +62,7 @@ create table if not exists faqs (
 -- ---------------------------------------------------------------------
 -- 5. Misafir yorumları
 -- ---------------------------------------------------------------------
-create table if not exists testimonials (
+create table if not exists peony_testimonials (
   id         uuid primary key default gen_random_uuid(),
   position   int not null default 0,
   author     text,
@@ -76,7 +76,7 @@ create table if not exists testimonials (
 -- ---------------------------------------------------------------------
 -- 6. Galeri
 -- ---------------------------------------------------------------------
-create table if not exists gallery (
+create table if not exists peony_gallery (
   id         uuid primary key default gen_random_uuid(),
   position   int not null default 0,
   image_url  text not null,
@@ -89,7 +89,7 @@ create table if not exists gallery (
 -- ---------------------------------------------------------------------
 -- 7. Ayarlar — iletişim bilgileri, çalışma saatleri, medya adresleri
 -- ---------------------------------------------------------------------
-create table if not exists settings (
+create table if not exists peony_settings (
   key        text primary key,
   value      text,
   updated_at timestamptz not null default now()
@@ -98,18 +98,18 @@ create table if not exists settings (
 -- ---------------------------------------------------------------------
 -- Güvenlik: herkes okur, sadece giriş yapmış yönetici yazar
 -- ---------------------------------------------------------------------
-alter table content      enable row level security;
-alter table services     enable row level security;
-alter table plans        enable row level security;
-alter table faqs         enable row level security;
-alter table testimonials enable row level security;
-alter table gallery      enable row level security;
-alter table settings     enable row level security;
+alter table peony_content      enable row level security;
+alter table peony_services     enable row level security;
+alter table peony_plans        enable row level security;
+alter table peony_faqs         enable row level security;
+alter table peony_testimonials enable row level security;
+alter table peony_gallery      enable row level security;
+alter table peony_settings     enable row level security;
 
 do $$
 declare t text;
 begin
-  foreach t in array array['content','services','plans','faqs','testimonials','gallery','settings']
+  foreach t in array array['peony_content','peony_services','peony_plans','peony_faqs','peony_testimonials','peony_gallery','peony_settings']
   loop
     execute format('drop policy if exists "public read %1$s" on %1$I', t);
     execute format('create policy "public read %1$s" on %1$I for select using (true)', t);
@@ -123,18 +123,18 @@ end $$;
 -- ---------------------------------------------------------------------
 -- updated_at otomatik güncelleme
 -- ---------------------------------------------------------------------
-create or replace function touch_updated_at() returns trigger
+create or replace function peony_touch_updated_at() returns trigger
 language plpgsql as $$
 begin new.updated_at = now(); return new; end $$;
 
 do $$
 declare t text;
 begin
-  foreach t in array array['content','services','plans','faqs','testimonials','gallery','settings']
+  foreach t in array array['peony_content','peony_services','peony_plans','peony_faqs','peony_testimonials','peony_gallery','peony_settings']
   loop
     execute format('drop trigger if exists trg_touch_%1$s on %1$I', t);
     execute format('create trigger trg_touch_%1$s before update on %1$I
-                    for each row execute function touch_updated_at()', t);
+                    for each row execute function peony_touch_updated_at()', t);
   end loop;
 end $$;
 
@@ -142,21 +142,21 @@ end $$;
 -- Görseller için depolama alanı (herkes okur, yönetici yazar)
 -- ---------------------------------------------------------------------
 insert into storage.buckets (id, name, public)
-values ('media', 'media', true)
+values ('peony-media', 'peony-media', true)
 on conflict (id) do update set public = true;
 
-drop policy if exists "media public read"  on storage.objects;
-create policy "media public read" on storage.objects
-  for select using (bucket_id = 'media');
+drop policy if exists "peony media public read"  on storage.objects;
+create policy "peony media public read" on storage.objects
+  for select using (bucket_id = 'peony-media');
 
-drop policy if exists "media admin write"  on storage.objects;
-create policy "media admin write" on storage.objects
-  for insert to authenticated with check (bucket_id = 'media');
+drop policy if exists "peony media admin write"  on storage.objects;
+create policy "peony media admin write" on storage.objects
+  for insert to authenticated with check (bucket_id = 'peony-media');
 
-drop policy if exists "media admin update" on storage.objects;
-create policy "media admin update" on storage.objects
-  for update to authenticated using (bucket_id = 'media');
+drop policy if exists "peony media admin update" on storage.objects;
+create policy "peony media admin update" on storage.objects
+  for update to authenticated using (bucket_id = 'peony-media');
 
-drop policy if exists "media admin delete" on storage.objects;
-create policy "media admin delete" on storage.objects
-  for delete to authenticated using (bucket_id = 'media');
+drop policy if exists "peony media admin delete" on storage.objects;
+create policy "peony media admin delete" on storage.objects
+  for delete to authenticated using (bucket_id = 'peony-media');

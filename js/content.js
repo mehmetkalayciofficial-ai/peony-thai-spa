@@ -16,7 +16,7 @@
   function configured() { return !!(CFG.url && CFG.anonKey); }
 
   function rest(table, query) {
-    return fetch(CFG.url.replace(/\/+$/, '') + '/rest/v1/' + table + '?' + query, {
+    return fetch(CFG.url.replace(/\/+$/, '') + '/rest/v1/' + (CFG.tablePrefix || '') + table + '?' + query, {
       headers: { apikey: CFG.anonKey, Authorization: 'Bearer ' + CFG.anonKey }
     }).then(function (r) {
       if (!r.ok) throw new Error(table + ': ' + r.status);

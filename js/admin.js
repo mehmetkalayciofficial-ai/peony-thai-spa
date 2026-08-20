@@ -172,12 +172,17 @@
     loadAll();
   }
 
+  /* Peony tabloları ortak bir veritabanını paylaştığı için "peony_" önekli.
+     Önek yapılandırmadan gelir; ayrı projeye taşınınca boşaltmak yeterli. */
+  function T(name) { return (CFG.tablePrefix || '') + name; }
+  function BUCKET() { return CFG.bucket || 'media'; }
+
   /* ---------------------------------------------------------------- veri */
   function loadAll() {
     $('#pane').innerHTML = '<div class="empty">Yükleniyor…</div>';
     var tables = Object.keys(DATA);
     Promise.all(tables.map(function (t) {
-      var q = sb.from(t).select('*');
+      var q = sb.from(T(t)).select('*');
       if (t !== 'content' && t !== 'settings') q = q.order('position', { ascending: true });
       return q;
     })).then(function (res) {
@@ -777,10 +782,10 @@
       .replace(/^-|-$/g, '');
     var path = Date.now() + '-' + (clean || 'dosya');
 
-    return sb.storage.from('media').upload(path, file, { cacheControl: '3600', upsert: false })
+    return sb.storage.from(BUCKET()).upload(path, file, { cacheControl: '3600', upsert: false })
       .then(function (r) {
         if (r.error) throw r.error;
-        return sb.storage.from('media').getPublicUrl(path).data.publicUrl;
+        return sb.storage.from(BUCKET()).getPublicUrl(path).data.publicUrl;
       })
       .catch(function (err) {
         toast('Yüklenemedi: ' + errText(err), 'err');
@@ -798,14 +803,14 @@
 
     // content
     if (DATA.content.length) {
-      jobs.push(sb.from('content').upsert(
+      jobs.push(sb.from(T('content')).upsert(
         DATA.content.map(function (c) { return { key: c.key, value: c.value || {} }; }),
         { onConflict: 'key' }));
     }
 
     // settings
     if (DATA.settings.length) {
-      jobs.push(sb.from('settings').upsert(
+      jobs.push(sb.from(T('settings')).upsert(
         DATA.settings.map(function (s) { return { key: s.key, value: s.value || '' }; }),
         { onConflict: 'key' }));
     }
@@ -829,8 +834,8 @@
         if (o.is_active === null) o.is_active = true;
         return o;
       });
-      if (rows.length) jobs.push(sb.from(name).upsert(rows, { onConflict: 'id' }));
-      if (REMOVED[name].length) jobs.push(sb.from(name).delete().in('id', REMOVED[name]));
+      if (rows.length) jobs.push(sb.from(T(name)).upsert(rows, { onConflict: 'id' }));
+      if (REMOVED[name].length) jobs.push(sb.from(T(name)).delete().in('id', REMOVED[name]));
     });
 
     Promise.all(jobs).then(function (res) {
