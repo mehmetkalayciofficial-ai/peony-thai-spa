@@ -1,5 +1,16 @@
 # Admin panel kurulumu
 
+> **Kurulum tamamlandı (20 Ağustos 2026).** Panel çalışıyor:
+> https://peony-thai-spa.vercel.app/admin.html
+> Giriş bilgileri `~/peony-admin-bilgileri.txt` dosyasında (git deposunun dışında).
+>
+> Peony, ücretsiz plandaki 2 proje sınırı dolu olduğu için **hasburak-sarrafiye**
+> projesinin veritabanını paylaşıyor. Tablolar `peony_` önekli, görseller ayrı
+> `peony-media` kovasında; hasburak verisine erişim yok (RLS ile doğrulandı).
+>
+> Aşağıdaki adımlar yalnızca **sıfırdan yeni bir kurulum** yapılacaksa geçerlidir
+> (örneğin Pro plana geçilip Peony kendi projesine taşınırsa).
+
 Panel `admin.html` adresinde. Çalışması için bir Supabase projesi gerekiyor.
 Aşağıdaki 5 adım bir kez yapılır, sonrası tarayıcıdan yönetilir.
 
