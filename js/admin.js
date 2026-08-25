@@ -122,6 +122,15 @@
   });
 
   /* ---------------------------------------------------------------- giriş */
+  /* Supabase e-posta ile kimlik doğrular; panelde kullanıcı adı yazmak
+     yeterli olsun diye alan adı burada tamamlanıyor. Tam e-posta yazılırsa
+     olduğu gibi kullanılır. */
+  var LOGIN_DOMAIN = 'peonythaispa.com';
+  function loginEmail(v) {
+    v = String(v || '').trim().toLowerCase();
+    return v.indexOf('@') > -1 ? v : v + '@' + LOGIN_DOMAIN;
+  }
+
   function initAuth() {
     if (!CFG.url || !CFG.anonKey) {
       $('#setupWarn').classList.remove('hidden');
@@ -138,7 +147,7 @@
       e.preventDefault();
       var btn = $('#lgBtn');
       btn.disabled = true; btn.textContent = 'Giriş yapılıyor…';
-      sb.auth.signInWithPassword({ email: $('#lgEmail').value.trim(), password: $('#lgPass').value })
+      sb.auth.signInWithPassword({ email: loginEmail($('#lgEmail').value), password: $('#lgPass').value })
         .then(function (r) {
           if (r.error) throw r.error;
           enter(r.data.session);
