@@ -15,6 +15,10 @@
   --line:         #E4E7DF;
 
   /* rgba() içinde kullanılan bileşenler — tema ile birlikte değişir */
+  /* Ana renk üstündeki yazı ve cam yüzeylerin zemini — koyu temada değişir */
+  --on-accent:    #FFFFFF;
+  --surface-rgb:  255, 255, 255;
+
   --accent-rgb:   65, 75, 58;
   --shadow-rgb:   28, 31, 26;
   --deep-rgb:     28, 34, 24;
@@ -43,22 +47,54 @@
    Yalnızca token'lar değişir; hiçbir bileşen kuralı tekrarlanmaz.
    -------------------------------------------------------------------------- */
 
-/* Lacivert · Altın · Krem */
+/* Gece mavisi · Altın — koyu tema.
+   Zeminler lacivert, bütün vurgular (buton, fiyat, çizim, üst etiket) altın. */
 :root[data-theme="navy"] {
-  --green:        #23304F;
-  --green-deep:   #16203A;
-  --green-soft:   #A8823C;   /* altın vurgu */
-  --green-tint:   #F6F1E6;   /* krem */
-  --paper:        #FCF9F3;
-  --ink:          #17203A;
-  --muted:        #6E7385;
-  --line:         #E8DFCC;
+  --green:        #C9A961;   /* altın — ana vurgu rengi */
+  --green-deep:   #060B16;   /* en koyu: footer ve ara şerit */
+  --green-soft:   #B08D4F;   /* soluk altın: üst etiketler */
+  --green-tint:   #16223C;   /* bölüm zemini */
+  --white:        #0E1729;   /* kart ve gövde yüzeyi */
+  --paper:        #111C33;   /* alternatif bölüm zemini */
+  --ink:          #ECE4D2;   /* ana metin: krem */
+  --muted:        #9BA6BF;   /* ikincil metin */
+  --line:         #253253;
 
-  --accent-rgb:   35, 48, 79;
-  --shadow-rgb:   22, 32, 58;
-  --deep-rgb:     18, 26, 46;
-  --deep2-rgb:    30, 42, 70;
+  --on-accent:    #0E1729;   /* altın zemin üstündeki yazı */
+  --surface-rgb:  14, 23, 41;
+  --accent-rgb:   201, 169, 97;
+  --shadow-rgb:   3, 7, 15;
+  --deep-rgb:     6, 11, 22;
+  --deep2-rgb:    12, 20, 38;
 }
+
+/* Koyu temanın gerektirdiği birkaç düzeltme */
+:root[data-theme="navy"] .plan--feature {
+  color: var(--on-accent);
+}
+:root[data-theme="navy"] .plan--feature .plan__note,
+:root[data-theme="navy"] .plan--feature li { color: rgba(14, 23, 41, .78); }
+:root[data-theme="navy"] .plan--feature li svg { color: var(--on-accent); }
+:root[data-theme="navy"] .plan--feature .plan__badge {
+  background: rgba(14, 23, 41, .14);
+  color: var(--on-accent);
+}
+:root[data-theme="navy"] .plan--feature .plan__price { border-color: rgba(14, 23, 41, .22); }
+:root[data-theme="navy"] .plan--feature .plan__price .amt { color: var(--on-accent); }
+:root[data-theme="navy"] .plan--feature .plan__price .per { color: rgba(14, 23, 41, .65); }
+
+/* Logo koyu cam üstünde de beyaz kalsın */
+:root[data-theme="navy"] .nav.is-stuck .nav__logo img,
+:root[data-theme="navy"] .nav--light .nav__logo img {
+  filter: brightness(0) invert(1);
+}
+
+/* Harita koyu zemine uysun */
+:root[data-theme="navy"] .map { filter: invert(.9) hue-rotate(180deg) grayscale(.35); }
+:root[data-theme="navy"] .map:hover { filter: invert(.86) hue-rotate(180deg) grayscale(.15); }
+
+/* Yer tutucu yazılar koyu zeminde okunur kalsın */
+:root[data-theme="navy"] .tbd { color: rgba(236, 228, 210, .5); }
 
 /* Lila · Pembemsi krem */
 :root[data-theme="lilac"] {
@@ -122,7 +158,7 @@ button { background: none; border: 0; cursor: pointer; }
   border-radius: 4px;
 }
 
-::selection { background: var(--green); color: #fff; }
+::selection { background: var(--green); color: var(--on-accent); }
 
 /* ---------- Layout ---------- */
 .shell {
@@ -214,7 +250,7 @@ button { background: none; border: 0; cursor: pointer; }
 /* ---------- Buttons ---------- */
 .btn {
   --btn-bg: var(--green);
-  --btn-fg: #fff;
+  --btn-fg: var(--on-accent);
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -247,7 +283,7 @@ button { background: none; border: 0; cursor: pointer; }
 }
 .btn--ghost:hover {
   --btn-bg: var(--green);
-  --btn-fg: #fff;
+  --btn-fg: var(--on-accent);
   border-color: var(--green);
 }
 
@@ -342,7 +378,7 @@ button { background: none; border: 0; cursor: pointer; }
 
 .nav.is-stuck .nav__inner {
   max-width: 1080px;
-  background: rgba(255,255,255,.82);
+  background: rgba(var(--surface-rgb), .82);
   border-color: var(--line);
   box-shadow: 0 10px 40px rgba(var(--shadow-rgb), .10);
   color: var(--ink);
@@ -351,16 +387,16 @@ button { background: none; border: 0; cursor: pointer; }
 /* Menü açıkken arkasındaki panel beyaz olur — navbar da açık temaya geçmeli,
    yoksa beyaz logo beyaz zeminde kaybolur. */
 .nav.is-open .nav__inner {
-  background: rgba(255, 255, 255, .9);
+  background: rgba(var(--surface-rgb), .9);
   border-color: var(--line);
   color: var(--ink);
 }
 .nav.is-open .nav__logo img { filter: none; }
-.nav.is-open .nav__cta { --btn-bg: var(--green); --btn-fg: #fff; }
+.nav.is-open .nav__cta { --btn-bg: var(--green); --btn-fg: var(--on-accent); }
 
 /* On light pages the navbar starts in its light state */
 .nav--light .nav__inner {
-  background: rgba(255,255,255,.82);
+  background: rgba(var(--surface-rgb), .82);
   border-color: var(--line);
   color: var(--ink);
 }
@@ -422,7 +458,7 @@ button { background: none; border: 0; cursor: pointer; }
 .nav.is-stuck .nav__cta,
 .nav--light .nav__cta {
   --btn-bg: var(--green);
-  --btn-fg: #fff;
+  --btn-fg: var(--on-accent);
 }
 
 /* ---------- Language switcher ---------- */
@@ -453,7 +489,7 @@ button { background: none; border: 0; cursor: pointer; }
   min-width: 190px;
   padding: 8px;
   border-radius: var(--r-md);
-  background: rgba(255,255,255,.96);
+  background: rgba(var(--surface-rgb), .96);
   border: 1px solid var(--line);
   box-shadow: 0 20px 50px rgba(var(--shadow-rgb), .16);
   backdrop-filter: blur(18px);
@@ -531,7 +567,7 @@ button { background: none; border: 0; cursor: pointer; }
   min-width: 210px;
   padding: 8px;
   border-radius: var(--r-md);
-  background: rgba(255, 255, 255, .96);
+  background: rgba(var(--surface-rgb), .96);
   border: 1px solid var(--line);
   box-shadow: 0 20px 50px rgba(var(--shadow-rgb), .16);
   backdrop-filter: blur(18px);
@@ -1016,7 +1052,7 @@ button { background: none; border: 0; cursor: pointer; }
 .plan--feature .plan__price .per { color: rgba(255,255,255,.7); }
 .plan--feature li { color: rgba(255,255,255,.86); }
 .plan--feature li svg { color: #fff; }
-.plan--feature .btn { --btn-bg: #fff; --btn-fg: var(--green-deep); }
+.plan--feature .btn { --btn-bg: var(--on-accent); --btn-fg: var(--green); }
 .plan--feature .btn:hover { box-shadow: 0 12px 28px rgba(0,0,0,.28); }
 
 /* ==========================================================================

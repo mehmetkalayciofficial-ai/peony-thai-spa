@@ -184,7 +184,7 @@
      ====================================================================== */
   var THEMES = [
     { id: 'green', dots: ['#414B3A', '#6B7A5E', '#F2F4EF'] },
-    { id: 'navy',  dots: ['#23304F', '#A8823C', '#F6F1E6'] },
+    { id: 'navy',  dots: ['#0E1729', '#C9A961', '#16223C'] },
     { id: 'lilac', dots: ['#6E5A8A', '#A98BB8', '#F8F2F6'] }
   ];
   var THEME_KEY = 'peony.theme';
