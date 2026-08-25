@@ -49,6 +49,18 @@
   function slugOf(s) { return s.slug || s.id; }
   function cell(v) { return (v && String(v).trim()) ? String(v) : TBD; }
 
+  /* Yerel çizimler maske olarak basılır (tema rengini alır); panelden
+     yüklenen gerçek fotoğraflar normal <img> olarak gösterilir. */
+  function artOrPhoto(src) {
+    if (/^assets\/art\/svc-[a-z]+\.svg$/.test(src || '')) {
+      // Kök göreli yol şart: var(--art) CSS dosyasının içinde çözümlendiği
+      // için göreli yol css/ klasörüne göre aranırdı.
+      var mask = '/' + src.replace('.svg', '-mask.svg');
+      return '<span class="svc__art" style="--art:url(' + mask + ')" aria-hidden="true"></span>';
+    }
+    return img(src);
+  }
+
   /* ======================================================================
      Reveal on scroll
      ====================================================================== */
@@ -280,7 +292,7 @@
       var slug = slugOf(s);
       return '' +
       '<article class="svc reveal" style="--d:' + d + 'ms">' +
-        '<div class="svc__media">' + img(s.img) + '</div>' +
+        '<div class="svc__media">' + artOrPhoto(s.img) + '</div>' +
         '<div class="svc__body">' +
           '<h3>' + I18N.t('svc.' + slug + '.name') + '</h3>' +
           '<p>' + I18N.t('svc.' + slug + '.desc') + '</p>' +

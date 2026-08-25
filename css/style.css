@@ -77,14 +77,6 @@
   --deep2-rgb:    75, 59, 102;
 }
 
-/* Çizim varlıkları sabit yeşil üretildiği için tema rengine döndürülüyor.
-   Beyaza indirgenen süsler (.ornament--light) bunun dışında tutulur. */
-:root[data-theme="navy"]  img[src*="assets/art/"]:not(.ornament--light) {
-  filter: hue-rotate(128deg) saturate(.85);
-}
-:root[data-theme="lilac"] img[src*="assets/art/"]:not(.ornament--light) {
-  filter: hue-rotate(174deg) saturate(.75);
-}
 
 /* Tema geçişi yumuşak olsun */
 body, .nav__inner, .svc, .plan, .info-card, .foot, .section--tint, .section--paper {
@@ -849,6 +841,21 @@ button { background: none; border: 0; cursor: pointer; }
 }
 .svc:hover .svc__media img { transform: scale(1.07); }
 
+
+/* Hizmet kartı çizimleri maske olarak basılır; rengi tema token'ından gelir,
+   böylece her temada tam uyumlu olur. Panelden gerçek fotoğraf yüklenirse
+   .svc__media img yolu kullanılır ve maske devreye girmez. */
+.svc__art {
+  display: block;
+  width: 100%;
+  height: 100%;
+  background-color: var(--green);
+  -webkit-mask: var(--art) center / cover no-repeat;
+  mask: var(--art) center / cover no-repeat;
+  transition: transform .8s var(--ease), background-color .5s var(--ease-soft);
+}
+.svc:hover .svc__art { transform: scale(1.07); }
+
 .svc__body {
   padding: 24px 22px 26px;
   text-align: center;
@@ -887,6 +894,7 @@ button { background: none; border: 0; cursor: pointer; }
    ========================================================================== */
 .band {
   position: relative;
+  background: var(--green-deep);
   min-height: clamp(420px, 56vw, 620px);
   display: grid;
   place-items: center;
