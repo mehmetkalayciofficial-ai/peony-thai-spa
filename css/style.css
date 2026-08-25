@@ -315,13 +315,16 @@ button { background: none; border: 0; cursor: pointer; }
 
 .nav__logo { display: flex; align-items: center; flex-shrink: 0; }
 .nav__logo img {
-  height: 26px;
-  width: auto;
-  filter: brightness(0) invert(1);
+  height: 46px;
+  width: 46px;
+  /* Logo renkli olduğu için koyu hero üstünde beyaza indirgeniyor;
+     navbar açık temaya geçince kendi renklerine dönüyor. */
+  filter: brightness(0) invert(1) drop-shadow(0 1px 6px rgba(20, 24, 18, .45));
   transition: filter .5s var(--ease-soft);
 }
 .nav.is-stuck .nav__logo img,
-.nav--light .nav__logo img { filter: none; }
+.nav--light .nav__logo img,
+.nav.is-open .nav__logo img { filter: none; }
 
 .nav__links {
   display: flex;
@@ -548,6 +551,18 @@ button { background: none; border: 0; cursor: pointer; }
   position: relative;
   padding: calc(var(--nav-h) + 72px) var(--gutter) 140px;
   max-width: 980px;
+}
+
+
+/* Hero'daki logo madalyonu — ölçülü, başlığın önüne geçmeyecek boyutta */
+.hero__logo {
+  display: block;
+  width: clamp(78px, 9.5vw, 112px);
+  height: auto;
+  margin: 0 auto clamp(18px, 2.4vw, 28px);
+  opacity: .96;
+  /* Videonun açık renkli kareleri üstünde kaybolmasın */
+  filter: drop-shadow(0 2px 14px rgba(20, 24, 18, .55));
 }
 
 .hero .eyebrow { color: rgba(255,255,255,.82); }
@@ -1268,8 +1283,8 @@ button { background: none; border: 0; cursor: pointer; }
 }
 .foot__logo { display: inline-block; margin-bottom: 30px; }
 .foot__logo img {
-  height: clamp(76px, 9vw, 100px);
-  width: auto;
+  width: clamp(96px, 11vw, 124px);
+  height: auto;
   filter: brightness(0) invert(1);
   opacity: .95;
 }
@@ -1402,6 +1417,7 @@ button { background: none; border: 0; cursor: pointer; }
   .nav .btn--cta-desktop { display: none; }
   /* Ortalayıcı .nav__links gizlenince sağ grubu kenara iten şey kalmıyor */
   .nav__side { margin-left: auto; }
+  .nav__logo img { height: 40px; width: 40px; }
   .nav__inner { padding: 0 12px 0 20px; }
 
   .plans { grid-template-columns: 1fr; max-width: 480px; margin-inline: auto; }
