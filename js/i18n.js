@@ -147,7 +147,9 @@
 
     if (cache[lang]) { finish(); return Promise.resolve(); }
 
-    return fetch('i18n/' + lang + '.json')
+    // Sözlük güncellenince tarayıcının eski kopyayı kullanmaması için
+    // her zaman sunucuya doğrulatılır (değişmemişse 304 döner).
+    return fetch('i18n/' + lang + '.json', { cache: 'no-cache' })
       .then(function (r) {
         if (!r.ok) throw new Error('missing dictionary: ' + lang);
         return r.json();

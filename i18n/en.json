@@ -217,5 +217,11 @@
     "visit": "Visit &amp; call",
     "follow": "Follow",
     "rights": "© 2026 Peony Thai Massage &amp; Spa. All rights reserved."
+  },
+  "theme": {
+    "label": "Colour theme",
+    "green": "Sage green",
+    "navy": "Navy & gold",
+    "lilac": "Lilac"
   }
 }

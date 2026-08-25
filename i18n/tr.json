@@ -217,5 +217,11 @@
     "visit": "Ziyaret &amp; arama",
     "follow": "Takip edin",
     "rights": "© 2026 Peony Thai Massage &amp; Spa. Tüm hakları saklıdır."
+  },
+  "theme": {
+    "label": "Renk teması",
+    "green": "Adaçayı yeşili",
+    "navy": "Lacivert & altın",
+    "lilac": "Lila"
   }
 }

@@ -217,5 +217,11 @@
     "visit": "แวะมา &amp; โทรหา",
     "follow": "ติดตามเรา",
     "rights": "© 2026 Peony Thai Massage &amp; Spa สงวนลิขสิทธิ์"
+  },
+  "theme": {
+    "label": "ธีมสี",
+    "green": "เขียวเสจ",
+    "navy": "กรมท่า & ทอง",
+    "lilac": "ม่วงไลแลค"
   }
 }

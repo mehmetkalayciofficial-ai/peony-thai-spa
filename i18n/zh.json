@@ -217,5 +217,11 @@
     "visit": "到店 &amp; 致电",
     "follow": "关注我们",
     "rights": "© 2026 Peony Thai Massage &amp; Spa 版权所有。"
+  },
+  "theme": {
+    "label": "配色主题",
+    "green": "鼠尾草绿",
+    "navy": "藏青与金",
+    "lilac": "淡紫"
   }
 }

@@ -168,6 +168,94 @@
   }
 
   /* ======================================================================
+     Renk teması — token'ları değiştirir, bileşen kuralları aynı kalır
+     ====================================================================== */
+  var THEMES = [
+    { id: 'green', dots: ['#414B3A', '#6B7A5E', '#F2F4EF'] },
+    { id: 'navy',  dots: ['#23304F', '#A8823C', '#F6F1E6'] },
+    { id: 'lilac', dots: ['#6E5A8A', '#A98BB8', '#F8F2F6'] }
+  ];
+  var THEME_KEY = 'peony.theme';
+
+  function currentTheme() {
+    return document.documentElement.getAttribute('data-theme') || 'green';
+  }
+
+  function setTheme(id) {
+    if (id === 'green') document.documentElement.removeAttribute('data-theme');
+    else document.documentElement.setAttribute('data-theme', id);
+    try { localStorage.setItem(THEME_KEY, id); } catch (e) {}
+
+    var meta = document.querySelector('meta[name="theme-color"]');
+    if (meta) {
+      meta.setAttribute('content',
+        getComputedStyle(document.documentElement).getPropertyValue('--green').trim());
+    }
+    paintThemeMenu();
+  }
+
+  function paintThemeMenu() {
+    var cur = currentTheme();
+    $$('.theme__menu').forEach(function (menu) {
+      if (!menu.childElementCount) {
+        THEMES.forEach(function (t) {
+          var b = document.createElement('button');
+          b.type = 'button';
+          b.dataset.theme = t.id;
+          b.setAttribute('role', 'menuitem');
+          b.innerHTML = '<span class="swatch" aria-hidden="true">' +
+            t.dots.map(function (c) { return '<i style="background:' + c + '"></i>'; }).join('') +
+            '</span><span data-theme-name="' + t.id + '"></span>';
+          b.addEventListener('click', function () { setTheme(t.id); });
+          menu.appendChild(b);
+        });
+      }
+      $$('button', menu).forEach(function (b) {
+        b.setAttribute('aria-current', b.dataset.theme === cur ? 'true' : 'false');
+      });
+    });
+    // isimler dile bağlı
+    $$('[data-theme-name]').forEach(function (el) {
+      el.textContent = I18N.t('theme.' + el.getAttribute('data-theme-name'),
+                              el.getAttribute('data-theme-name'));
+    });
+  }
+
+  function initTheme() {
+    var box = $('#theme');
+    if (!box) return;
+    var btn = $('.theme__btn', box);
+
+    paintThemeMenu();
+
+    btn.addEventListener('click', function (e) {
+      e.stopPropagation();
+      var open = box.classList.toggle('is-open');
+      btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+      var lang = $('#lang');
+      if (lang) lang.classList.remove('is-open');
+    });
+    document.addEventListener('click', function (e) {
+      if (!box.contains(e.target)) {
+        box.classList.remove('is-open');
+        btn.setAttribute('aria-expanded', 'false');
+      }
+    });
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape') {
+        box.classList.remove('is-open');
+        btn.setAttribute('aria-expanded', 'false');
+      }
+    });
+    box.addEventListener('click', function (e) {
+      if (e.target.closest('.theme__menu button')) {
+        box.classList.remove('is-open');
+        btn.setAttribute('aria-expanded', 'false');
+      }
+    });
+  }
+
+  /* ======================================================================
      Yüzen WhatsApp butonu — hero geçildikten sonra belirir
      ====================================================================== */
   function initWhatsApp() {
@@ -501,6 +589,7 @@
     initGallery();
     initForm();
     initWhatsApp();
+    initTheme();
     renderAll();
   }
 
@@ -511,6 +600,7 @@
   }
 
   document.addEventListener('peony:lang', function () {
+    paintThemeMenu();
     renderAll();
     observeReveals();
   });

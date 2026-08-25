@@ -217,5 +217,11 @@
     "visit": "पता &amp; फ़ोन",
     "follow": "फ़ॉलो करें",
     "rights": "© 2026 Peony Thai Massage &amp; Spa. सर्वाधिकार सुरक्षित।"
+  },
+  "theme": {
+    "label": "रंग थीम",
+    "green": "सेज हरा",
+    "navy": "नेवी और सुनहरा",
+    "lilac": "लाइलैक"
   }
 }

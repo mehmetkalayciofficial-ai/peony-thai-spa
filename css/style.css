@@ -14,6 +14,12 @@
   --muted:        #6E7268;
   --line:         #E4E7DF;
 
+  /* rgba() içinde kullanılan bileşenler — tema ile birlikte değişir */
+  --accent-rgb:   65, 75, 58;
+  --shadow-rgb:   28, 31, 26;
+  --deep-rgb:     28, 34, 24;
+  --deep2-rgb:    44, 52, 40;
+
   --font: "Onest", "Noto Sans Thai", "Noto Sans SC", "Noto Sans Devanagari",
           system-ui, -apple-system, "Segoe UI", sans-serif;
 
@@ -29,6 +35,61 @@
   --ease-soft: cubic-bezier(.4, 0, .2, 1);
 
   --nav-h: 72px;
+}
+
+
+/* --------------------------------------------------------------------------
+   Alternatif renk temaları
+   Yalnızca token'lar değişir; hiçbir bileşen kuralı tekrarlanmaz.
+   -------------------------------------------------------------------------- */
+
+/* Lacivert · Altın · Krem */
+:root[data-theme="navy"] {
+  --green:        #23304F;
+  --green-deep:   #16203A;
+  --green-soft:   #A8823C;   /* altın vurgu */
+  --green-tint:   #F6F1E6;   /* krem */
+  --paper:        #FCF9F3;
+  --ink:          #17203A;
+  --muted:        #6E7385;
+  --line:         #E8DFCC;
+
+  --accent-rgb:   35, 48, 79;
+  --shadow-rgb:   22, 32, 58;
+  --deep-rgb:     18, 26, 46;
+  --deep2-rgb:    30, 42, 70;
+}
+
+/* Lila · Pembemsi krem */
+:root[data-theme="lilac"] {
+  --green:        #6E5A8A;
+  --green-deep:   #4B3B66;
+  --green-soft:   #A98BB8;
+  --green-tint:   #F8F2F6;
+  --paper:        #FDFAFC;
+  --ink:          #2A2233;
+  --muted:        #7A7185;
+  --line:         #EEE3EC;
+
+  --accent-rgb:   110, 90, 138;
+  --shadow-rgb:   42, 34, 51;
+  --deep-rgb:     48, 38, 62;
+  --deep2-rgb:    75, 59, 102;
+}
+
+/* Çizim varlıkları sabit yeşil üretildiği için tema rengine döndürülüyor.
+   Beyaza indirgenen süsler (.ornament--light) bunun dışında tutulur. */
+:root[data-theme="navy"]  img[src*="assets/art/"]:not(.ornament--light) {
+  filter: hue-rotate(128deg) saturate(.85);
+}
+:root[data-theme="lilac"] img[src*="assets/art/"]:not(.ornament--light) {
+  filter: hue-rotate(174deg) saturate(.75);
+}
+
+/* Tema geçişi yumuşak olsun */
+body, .nav__inner, .svc, .plan, .info-card, .foot, .section--tint, .section--paper {
+  transition: background-color .5s var(--ease-soft), color .5s var(--ease-soft),
+              border-color .5s var(--ease-soft);
 }
 
 /* ---------- Reset ---------- */
@@ -183,7 +244,7 @@ button { background: none; border: 0; cursor: pointer; }
 }
 .btn:hover {
   transform: translateY(-2px);
-  box-shadow: 0 12px 28px rgba(65, 75, 58, .26);
+  box-shadow: 0 12px 28px rgba(var(--accent-rgb), .26);
 }
 .btn:active { transform: translateY(0); }
 
@@ -275,7 +336,7 @@ button { background: none; border: 0; cursor: pointer; }
   gap: 20px;
   padding: 0 12px 0 24px;
   border-radius: var(--r-pill);
-  background: rgba(28, 31, 26, .28);
+  background: rgba(var(--shadow-rgb), .28);
   border: 1px solid rgba(255,255,255,.16);
   backdrop-filter: blur(18px) saturate(150%);
   -webkit-backdrop-filter: blur(18px) saturate(150%);
@@ -291,7 +352,7 @@ button { background: none; border: 0; cursor: pointer; }
   max-width: 1080px;
   background: rgba(255,255,255,.82);
   border-color: var(--line);
-  box-shadow: 0 10px 40px rgba(28, 31, 26, .10);
+  box-shadow: 0 10px 40px rgba(var(--shadow-rgb), .10);
   color: var(--ink);
 }
 
@@ -311,7 +372,7 @@ button { background: none; border: 0; cursor: pointer; }
   border-color: var(--line);
   color: var(--ink);
 }
-.nav--light.is-stuck .nav__inner { box-shadow: 0 10px 40px rgba(28, 31, 26, .10); }
+.nav--light.is-stuck .nav__inner { box-shadow: 0 10px 40px rgba(var(--shadow-rgb), .10); }
 
 .nav__logo { display: flex; align-items: center; flex-shrink: 0; }
 .nav__logo img {
@@ -319,7 +380,7 @@ button { background: none; border: 0; cursor: pointer; }
   width: 46px;
   /* Logo renkli olduğu için koyu hero üstünde beyaza indirgeniyor;
      navbar açık temaya geçince kendi renklerine dönüyor. */
-  filter: brightness(0) invert(1) drop-shadow(0 1px 6px rgba(20, 24, 18, .45));
+  filter: brightness(0) invert(1) drop-shadow(0 1px 6px rgba(var(--deep-rgb), .45));
   transition: filter .5s var(--ease-soft);
 }
 .nav.is-stuck .nav__logo img,
@@ -402,7 +463,7 @@ button { background: none; border: 0; cursor: pointer; }
   border-radius: var(--r-md);
   background: rgba(255,255,255,.96);
   border: 1px solid var(--line);
-  box-shadow: 0 20px 50px rgba(28,31,26,.16);
+  box-shadow: 0 20px 50px rgba(var(--shadow-rgb), .16);
   backdrop-filter: blur(18px);
   -webkit-backdrop-filter: blur(18px);
   color: var(--ink);
@@ -436,6 +497,89 @@ button { background: none; border: 0; cursor: pointer; }
   font-size: 11px;
   letter-spacing: .1em;
   color: var(--muted);
+}
+
+
+/* ---------- Tema seçici ---------- */
+.theme { position: relative; }
+
+.theme__btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  height: 44px;
+  padding: 0 12px;
+  border-radius: var(--r-pill);
+  border: 1px solid currentColor;
+  opacity: .82;
+  transition: opacity .25s var(--ease-soft), background-color .25s var(--ease-soft);
+}
+.theme__btn:hover { opacity: 1; background: rgba(128, 128, 128, .12); }
+.theme__btn .chev { transition: transform .35s var(--ease); }
+.theme.is-open .theme__btn .chev { transform: rotate(180deg); }
+
+/* Butondaki nokta, yürürlükteki temanın ana rengini gösterir */
+.theme__dot {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: var(--green);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .55);
+  transition: background-color .4s var(--ease-soft);
+}
+/* Koyu hero üstünde nokta kendi rengiyle görünsün diye halka veriliyor */
+.nav:not(.is-stuck):not(.nav--light):not(.is-open) .theme__dot {
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .8), 0 0 0 1px rgba(255, 255, 255, .35);
+}
+
+.theme__menu {
+  position: absolute;
+  top: calc(100% + 12px);
+  right: 0;
+  min-width: 210px;
+  padding: 8px;
+  border-radius: var(--r-md);
+  background: rgba(255, 255, 255, .96);
+  border: 1px solid var(--line);
+  box-shadow: 0 20px 50px rgba(var(--shadow-rgb), .16);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  color: var(--ink);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-8px) scale(.97);
+  transform-origin: top right;
+  transition: opacity .3s var(--ease), transform .3s var(--ease), visibility .3s;
+}
+.theme.is-open .theme__menu { opacity: 1; visibility: visible; transform: translateY(0) scale(1); }
+
+.theme__menu button {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  min-height: 44px;
+  padding: 0 12px;
+  border-radius: var(--r-sm);
+  font-size: 14.5px;
+  text-align: left;
+  transition: background-color .2s var(--ease-soft);
+}
+.theme__menu button:hover { background: var(--green-tint); }
+.theme__menu button[aria-current="true"] { color: var(--green); font-weight: 500; }
+
+/* Her seçenekte paletin üç rengi küçük birer nokta olarak gösterilir */
+.swatch { display: inline-flex; gap: 3px; flex-shrink: 0; }
+.swatch i {
+  width: 13px;
+  height: 13px;
+  border-radius: 50%;
+  box-shadow: inset 0 0 0 1px rgba(0, 0, 0, .10);
+}
+
+@media (max-width: 520px) {
+  .theme__btn { padding: 0 10px; gap: 5px; }
+  .theme__menu { min-width: 190px; }
 }
 
 /* ---------- Mobile menu ---------- */
@@ -540,11 +684,11 @@ button { background: none; border: 0; cursor: pointer; }
   inset: 0;
   background:
     linear-gradient(180deg,
-      rgba(28, 34, 24, .60) 0%,
-      rgba(28, 34, 24, .46) 32%,
-      rgba(28, 34, 24, .58) 70%,
-      rgba(28, 34, 24, .84) 100%),
-    radial-gradient(110% 75% at 50% 48%, rgba(28,34,24,.22) 0%, rgba(28,34,24,.62) 100%);
+      rgba(var(--deep-rgb), .60) 0%,
+      rgba(var(--deep-rgb), .46) 32%,
+      rgba(var(--deep-rgb), .58) 70%,
+      rgba(var(--deep-rgb), .84) 100%),
+    radial-gradient(110% 75% at 50% 48%, rgba(var(--deep-rgb), .22) 0%, rgba(var(--deep-rgb), .62) 100%);
 }
 
 .hero__inner {
@@ -562,7 +706,7 @@ button { background: none; border: 0; cursor: pointer; }
   margin: 0 auto clamp(18px, 2.4vw, 28px);
   opacity: .96;
   /* Videonun açık renkli kareleri üstünde kaybolmasın */
-  filter: drop-shadow(0 2px 14px rgba(20, 24, 18, .55));
+  filter: drop-shadow(0 2px 14px rgba(var(--deep-rgb), .55));
 }
 
 .hero .eyebrow { color: rgba(255,255,255,.82); }
@@ -690,7 +834,7 @@ button { background: none; border: 0; cursor: pointer; }
 .svc:hover {
   transform: translateY(-6px);
   border-color: var(--green);
-  box-shadow: 0 22px 48px rgba(28,31,26,.10);
+  box-shadow: 0 22px 48px rgba(var(--shadow-rgb), .10);
 }
 
 .svc__media {
@@ -766,7 +910,7 @@ button { background: none; border: 0; cursor: pointer; }
   position: absolute;
   inset: 0;
   z-index: -1;
-  background: linear-gradient(180deg, rgba(28,34,24,.58), rgba(28,34,24,.72));
+  background: linear-gradient(180deg, rgba(var(--deep-rgb), .58), rgba(var(--deep-rgb), .72));
 }
 .band__inner { padding: 80px var(--gutter); max-width: 900px; }
 .band__inner .eyebrow { color: rgba(255,255,255,.8); }
@@ -798,7 +942,7 @@ button { background: none; border: 0; cursor: pointer; }
   text-align: center;
   transition: transform .45s var(--ease), box-shadow .45s var(--ease-soft);
 }
-.plan:hover { transform: translateY(-6px); box-shadow: 0 22px 48px rgba(28,31,26,.10); }
+.plan:hover { transform: translateY(-6px); box-shadow: 0 22px 48px rgba(var(--shadow-rgb), .10); }
 
 .plan__badge {
   align-self: center;
@@ -855,7 +999,7 @@ button { background: none; border: 0; cursor: pointer; }
   background: var(--green);
   border-color: var(--green);
   color: #fff;
-  box-shadow: 0 26px 60px rgba(65,75,58,.24);
+  box-shadow: 0 26px 60px rgba(var(--accent-rgb), .24);
 }
 .plan--feature .plan__badge { background: rgba(255,255,255,.16); color: #fff; }
 .plan--feature .plan__note { color: rgba(255,255,255,.78); }
@@ -1023,7 +1167,7 @@ button { background: none; border: 0; cursor: pointer; }
   content: "";
   position: absolute;
   inset: 0;
-  background: linear-gradient(180deg, rgba(28,34,24,0), rgba(28,34,24,.3));
+  background: linear-gradient(180deg, rgba(var(--deep-rgb), 0), rgba(var(--deep-rgb), .3));
   opacity: 0;
   transition: opacity .45s var(--ease-soft);
 }
@@ -1079,7 +1223,7 @@ button { background: none; border: 0; cursor: pointer; }
   display: grid;
   place-items: center;
   padding: clamp(16px, 4vw, 56px);
-  background: rgba(20, 24, 18, .94);
+  background: rgba(var(--deep-rgb), .94);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
   opacity: 0;
@@ -1151,7 +1295,7 @@ button { background: none; border: 0; cursor: pointer; }
 .info-card:hover {
   transform: translateY(-5px);
   border-color: var(--green);
-  box-shadow: 0 20px 44px rgba(28,31,26,.09);
+  box-shadow: 0 20px 44px rgba(var(--shadow-rgb), .09);
 }
 .info-card .ic {
   display: grid;
@@ -1212,7 +1356,7 @@ button { background: none; border: 0; cursor: pointer; }
 .field textarea:focus {
   outline: none;
   border-color: var(--green);
-  box-shadow: 0 0 0 3px rgba(65,75,58,.12);
+  box-shadow: 0 0 0 3px rgba(var(--accent-rgb), .12);
 }
 .form .btn { justify-self: center; margin-top: 8px; min-width: 220px; }
 .form__note {
@@ -1265,7 +1409,7 @@ button { background: none; border: 0; cursor: pointer; }
   position: absolute;
   inset: 0;
   z-index: -1;
-  background: linear-gradient(180deg, rgba(44,52,40,.86), rgba(28,34,24,.96));
+  background: linear-gradient(180deg, rgba(var(--deep2-rgb), .86), rgba(var(--deep-rgb), .96));
 }
 
 .foot__cta {
@@ -1378,7 +1522,7 @@ button { background: none; border: 0; cursor: pointer; }
   border-radius: 50%;
   background: var(--green);
   color: #fff;
-  box-shadow: 0 10px 30px rgba(28, 31, 26, .28);
+  box-shadow: 0 10px 30px rgba(var(--shadow-rgb), .28);
   opacity: 0;
   visibility: hidden;
   transform: translateY(14px) scale(.9);
@@ -1387,7 +1531,7 @@ button { background: none; border: 0; cursor: pointer; }
 }
 /* Hero'da görünmez, sayfa kaydırılınca süzülerek gelir */
 .wa.is-in { opacity: 1; visibility: visible; transform: none; }
-.wa:hover { transform: translateY(-3px) scale(1.06); box-shadow: 0 16px 40px rgba(28, 31, 26, .34); }
+.wa:hover { transform: translateY(-3px) scale(1.06); box-shadow: 0 16px 40px rgba(var(--shadow-rgb), .34); }
 .wa:active { transform: translateY(0) scale(1); }
 
 @media (max-width: 520px) { .wa { width: 52px; height: 52px; } }
