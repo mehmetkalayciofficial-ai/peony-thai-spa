@@ -127,22 +127,21 @@ insert into peony_gallery (position, image_url, category) values
   (11, 'media/gallery-12.jpg?v=1', 'details');
 
 insert into peony_settings (key, value) values
-  -- Aşağıdakilerin tamamı bariz sahte yer tutucudur; panelden değiştirilir.
-  -- Mekân Tayland'da olduğu için numaralar +66 biçiminde.
-  ('phone', '+66111111111'),
-  ('phone_display', '+66 11 111 1111'),
-  ('whatsapp', '+66 11 111 1111'),
+  -- Adres ve telefon gerçek; ücret bilgileri hâlâ yer tutucu.
+  ('phone', '+6633033689'),
+  ('phone_display', '+66 33 033 689'),
+  ('whatsapp', '+66 33 033 689'),
   ('email', 'hello@peonythaispa.com'),
   ('email_display', 'hello@peonythaispa.com'),
-  ('address_line1', '111 Sukhumvit Road, Khlong Toei'),
-  ('address_line2', 'Bangkok 10110, Thailand'),
+  ('address_line1', '193/137 Moo 10, Soi Buakhao'),
+  ('address_line2', 'Pattaya City, Bang Lamung, Chon Buri 20150, Thailand'),
   ('hours_weekday', '10:00 – 22:00'),
   ('hours_weekend', '10:00 – 23:00'),
   ('instagram', '#'),
   ('facebook', '#'),
-  ('whatsapp_url', 'https://wa.me/66111111111'),
-  -- Bangkok, Sukhumvit. Panelden başka bir konumla değiştirilebilir.
-  ('map_embed', 'https://www.google.com/maps?q=13.7373,100.5608&z=16&output=embed'),
+  ('whatsapp_url', 'https://wa.me/6633033689'),
+  -- Pattaya, Soi Buakhao. Panelden başka bir konumla değiştirilebilir.
+  ('map_embed', 'https://www.google.com/maps?q=193/137%20Moo%2010%2C%20Soi%20Buakhao%2C%20Pattaya%20City%2C%20Bang%20Lamung%20District%2C%20Chon%20Buri%2020150%2C%20Thailand&z=17&output=embed'),
   ('stat1', '11'),
   ('stat2', '11'),
   ('stat3', '1.111+'),

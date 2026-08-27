@@ -236,11 +236,45 @@
     applyMosaic(data);
   }
 
+  /* Sayfa çözümlenmeden veri çekmeye başlıyoruz; DOM'a yazmak için de
+     hem DOM'un hem sözlüğün hazır olmasını bekliyoruz. Böylece ağ isteği
+     HTML çözümlemesiyle paralel ilerliyor ve panelden yüklenen görseller
+     sayfa açıldıktan çok sonra değil, ilk boyamaya yakın yerine oturuyor. */
+  function whenReady() {
+    return new Promise(function (resolve) {
+      var go = function () {
+        if (window.I18N) return resolve();
+        document.addEventListener('peony:lang', function h() {
+          document.removeEventListener('peony:lang', h); resolve();
+        });
+      };
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', go);
+      } else { go(); }
+    });
+  }
+
+  /* Panelden gelen görselleri tarayıcıya erkenden duyur ki indirme,
+     src değişmesini beklemeden başlasın. */
+  function preloadMedia(settings) {
+    if (!settings) return;
+    ['hero_poster', 'about_inline', 'about_1', 'about_2', 'about_3'].forEach(function (k) {
+      var url = settings[k];
+      if (!url || document.querySelector('link[rel="preload"][href="' + url + '"]')) return;
+      var l = document.createElement('link');
+      l.rel = 'preload'; l.as = 'image'; l.href = url;
+      (document.head || document.documentElement).appendChild(l);
+    });
+  }
+
   function load() {
     if (!configured()) return;
 
     var cached = readCache();
-    if (cached) useData(cached);
+    if (cached) {
+      preloadMedia(cached.settings);          // önbellekten: indirme hemen başlar
+      whenReady().then(function () { useData(cached); });
+    }
 
     Promise.all(TABLES.map(function (t) {
       return rest(t, 'select=*').catch(function (e) {
@@ -253,7 +287,8 @@
       if (!Object.keys(raw).length) return;
       var data = shape(raw);
       writeCache(data);
-      useData(data);
+      preloadMedia(data.settings);
+      return whenReady().then(function () { useData(data); });
     });
   }
 
@@ -262,9 +297,5 @@
     if (window.PEONY_DATA) apply(window.PEONY_DATA);
   });
 
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', load);
-  } else {
-    load();
-  }
+  load();
 })();

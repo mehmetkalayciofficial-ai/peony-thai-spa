@@ -220,8 +220,7 @@
   },
   "theme": {
     "label": "Colour theme",
-    "green": "Sage green",
-    "navy": "Navy & gold",
+    "navy": "Midnight blue & gold",
     "lilac": "Lilac"
   }
 }

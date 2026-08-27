@@ -113,7 +113,7 @@ a { color: var(--green); }
   overflow-y: auto;
 }
 .side__logo { padding: 4px 10px 22px; }
-.side__logo img { height: 30px; width: auto; filter: brightness(0) invert(1); opacity: .95; }
+.side__logo img { height: 44px; width: 44px; opacity: .95; }
 
 .side nav { display: grid; gap: 3px; }
 .side nav button {
@@ -365,8 +365,9 @@ a { color: var(--green); }
     position: static; height: auto; flex-direction: row; align-items: center;
     gap: 10px; overflow-x: auto; padding: 12px;
   }
-  .side__logo { padding: 0 8px 0 4px; }
-  .side__logo img { height: 24px; }
+  /* Yatay şeritte esnemesin; dairesel logo kare kalmalı */
+  .side__logo { padding: 0 8px 0 4px; flex-shrink: 0; }
+  .side__logo img { height: 34px; width: 34px; flex-shrink: 0; }
   .side nav { display: flex; gap: 4px; }
   .side nav button { white-space: nowrap; min-height: 38px; }
   .side nav button span { display: none; }

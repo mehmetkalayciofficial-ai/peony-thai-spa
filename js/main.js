@@ -182,19 +182,20 @@
   /* ======================================================================
      Renk teması — token'ları değiştirir, bileşen kuralları aynı kalır
      ====================================================================== */
+  /* Varsayılan tema (gece mavisi) :root'ta tanımlı; seçilince data-theme
+     kaldırılır. Lila için attribute eklenir. */
   var THEMES = [
-    { id: 'green', dots: ['#414B3A', '#6B7A5E', '#F2F4EF'] },
     { id: 'navy',  dots: ['#0E1729', '#C9A961', '#16223C'] },
-    { id: 'lilac', dots: ['#6E5A8A', '#A98BB8', '#F8F2F6'] }
+    { id: 'lilac', dots: ['#6E5A8A', '#8F76A8', '#F8F2F6'] }
   ];
   var THEME_KEY = 'peony.theme';
 
   function currentTheme() {
-    return document.documentElement.getAttribute('data-theme') || 'green';
+    return document.documentElement.getAttribute('data-theme') || 'navy';
   }
 
   function setTheme(id) {
-    if (id === 'green') document.documentElement.removeAttribute('data-theme');
+    if (id === 'navy') document.documentElement.removeAttribute('data-theme');
     else document.documentElement.setAttribute('data-theme', id);
     try { localStorage.setItem(THEME_KEY, id); } catch (e) {}
 

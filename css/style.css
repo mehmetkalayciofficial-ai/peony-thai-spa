@@ -4,25 +4,27 @@
 
 /* ---------- Tokens ---------- */
 :root {
-  --green:        #414B3A;
-  --green-deep:   #2C3428;
-  --green-soft:   #6B7A5E;
-  --green-tint:   #F2F4EF;
-  --white:        #FFFFFF;
-  --paper:        #FAFAF8;
-  --ink:          #1C1F1A;
-  --muted:        #6E7268;
-  --line:         #E4E7DF;
+  /* Varsayılan tema: gece mavisi & altın.
+     Zeminler lacivert, bütün vurgular altın. */
+  --green:        #C9A961;   /* altın — ana vurgu rengi */
+  --green-deep:   #060B16;   /* en koyu: footer ve ara şerit */
+  --green-soft:   #B08D4F;   /* soluk altın: üst etiketler */
+  --green-tint:   #16223C;   /* bölüm zemini */
+  --white:        #0E1729;   /* kart ve gövde yüzeyi */
+  --paper:        #111C33;   /* alternatif bölüm zemini */
+  --ink:          #ECE4D2;   /* ana metin: krem */
+  --muted:        #9BA6BF;   /* ikincil metin */
+  --line:         #253253;
 
   /* rgba() içinde kullanılan bileşenler — tema ile birlikte değişir */
   /* Ana renk üstündeki yazı ve cam yüzeylerin zemini — koyu temada değişir */
-  --on-accent:    #FFFFFF;
-  --surface-rgb:  255, 255, 255;
+  --on-accent:    #0E1729;   /* altın zemin üstündeki yazı */
+  --surface-rgb:  14, 23, 41;
 
-  --accent-rgb:   65, 75, 58;
-  --shadow-rgb:   28, 31, 26;
-  --deep-rgb:     28, 34, 24;
-  --deep2-rgb:    44, 52, 40;
+  --accent-rgb:   201, 169, 97;
+  --shadow-rgb:   3, 7, 15;
+  --deep-rgb:     6, 11, 22;
+  --deep2-rgb:    12, 20, 38;
 
   --font: "Onest", "Noto Sans Thai", "Noto Sans SC", "Noto Sans Devanagari",
           system-ui, -apple-system, "Segoe UI", sans-serif;
@@ -47,71 +49,74 @@
    Yalnızca token'lar değişir; hiçbir bileşen kuralı tekrarlanmaz.
    -------------------------------------------------------------------------- */
 
-/* Gece mavisi · Altın — koyu tema.
-   Zeminler lacivert, bütün vurgular (buton, fiyat, çizim, üst etiket) altın. */
-:root[data-theme="navy"] {
-  --green:        #C9A961;   /* altın — ana vurgu rengi */
-  --green-deep:   #060B16;   /* en koyu: footer ve ara şerit */
-  --green-soft:   #B08D4F;   /* soluk altın: üst etiketler */
-  --green-tint:   #16223C;   /* bölüm zemini */
-  --white:        #0E1729;   /* kart ve gövde yüzeyi */
-  --paper:        #111C33;   /* alternatif bölüm zemini */
-  --ink:          #ECE4D2;   /* ana metin: krem */
-  --muted:        #9BA6BF;   /* ikincil metin */
-  --line:         #253253;
-
-  --on-accent:    #0E1729;   /* altın zemin üstündeki yazı */
-  --surface-rgb:  14, 23, 41;
-  --accent-rgb:   201, 169, 97;
-  --shadow-rgb:   3, 7, 15;
-  --deep-rgb:     6, 11, 22;
-  --deep2-rgb:    12, 20, 38;
-}
-
-/* Koyu temanın gerektirdiği birkaç düzeltme */
-:root[data-theme="navy"] .plan--feature {
+/* Koyu zeminin gerektirdiği düzeltmeler (varsayılan tema) */
+.plan--feature {
   color: var(--on-accent);
 }
-:root[data-theme="navy"] .plan--feature .plan__note,
-:root[data-theme="navy"] .plan--feature li { color: rgba(14, 23, 41, .78); }
-:root[data-theme="navy"] .plan--feature li svg { color: var(--on-accent); }
-:root[data-theme="navy"] .plan--feature .plan__badge {
+.plan--feature .plan__note,
+.plan--feature li { color: rgba(14, 23, 41, .78); }
+.plan--feature li svg { color: var(--on-accent); }
+.plan--feature .plan__badge {
   background: rgba(14, 23, 41, .14);
   color: var(--on-accent);
 }
-:root[data-theme="navy"] .plan--feature .plan__price { border-color: rgba(14, 23, 41, .22); }
-:root[data-theme="navy"] .plan--feature .plan__price .amt { color: var(--on-accent); }
-:root[data-theme="navy"] .plan--feature .plan__price .per { color: rgba(14, 23, 41, .65); }
+.plan--feature .plan__price { border-color: rgba(14, 23, 41, .22); }
+.plan--feature .plan__price .amt { color: var(--on-accent); }
+.plan--feature .plan__price .per { color: rgba(14, 23, 41, .65); }
 
 /* Logo koyu cam üstünde de beyaz kalsın */
-:root[data-theme="navy"] .nav.is-stuck .nav__logo img,
-:root[data-theme="navy"] .nav--light .nav__logo img {
+.nav.is-stuck .nav__logo img,
+.nav--light .nav__logo img {
   filter: brightness(0) invert(1);
 }
 
 /* Harita koyu zemine uysun */
-:root[data-theme="navy"] .map { filter: invert(.9) hue-rotate(180deg) grayscale(.35); }
-:root[data-theme="navy"] .map:hover { filter: invert(.86) hue-rotate(180deg) grayscale(.15); }
+.map { filter: invert(.9) hue-rotate(180deg) grayscale(.35); }
+.map:hover { filter: invert(.86) hue-rotate(180deg) grayscale(.15); }
 
 /* Yer tutucu yazılar koyu zeminde okunur kalsın */
-:root[data-theme="navy"] .tbd { color: rgba(236, 228, 210, .5); }
+.tbd { color: rgba(236, 228, 210, .5); }
 
-/* Lila · Pembemsi krem */
+/* Lila · Pembemsi krem — açık tema */
 :root[data-theme="lilac"] {
   --green:        #6E5A8A;
   --green-deep:   #4B3B66;
-  --green-soft:   #A98BB8;
+  --green-soft:   #8F76A8;
   --green-tint:   #F8F2F6;
+  --white:        #FFFFFF;
   --paper:        #FDFAFC;
   --ink:          #2A2233;
   --muted:        #7A7185;
   --line:         #EEE3EC;
 
+  --on-accent:    #FFFFFF;
+  --surface-rgb:  255, 255, 255;
   --accent-rgb:   110, 90, 138;
   --shadow-rgb:   42, 34, 51;
   --deep-rgb:     48, 38, 62;
   --deep2-rgb:    75, 59, 102;
 }
+
+/* Açık tema olduğu için varsayılan koyu zemin düzeltmeleri geri alınır */
+:root[data-theme="lilac"] .plan--feature { color: #fff; }
+:root[data-theme="lilac"] .plan--feature .plan__note,
+:root[data-theme="lilac"] .plan--feature li { color: rgba(255, 255, 255, .82); }
+:root[data-theme="lilac"] .plan--feature li svg { color: #fff; }
+:root[data-theme="lilac"] .plan--feature .plan__badge {
+  background: rgba(255, 255, 255, .18);
+  color: #fff;
+}
+:root[data-theme="lilac"] .plan--feature .plan__price { border-color: rgba(255, 255, 255, .24); }
+:root[data-theme="lilac"] .plan--feature .plan__price .amt { color: #fff; }
+:root[data-theme="lilac"] .plan--feature .plan__price .per { color: rgba(255, 255, 255, .72); }
+
+:root[data-theme="lilac"] .nav.is-stuck .nav__logo img,
+:root[data-theme="lilac"] .nav--light .nav__logo img { filter: none; }
+
+:root[data-theme="lilac"] .map { filter: grayscale(1) contrast(.92) opacity(.92); }
+:root[data-theme="lilac"] .map:hover { filter: grayscale(0) contrast(1) opacity(1); }
+
+:root[data-theme="lilac"] .tbd { color: rgba(140, 140, 140, .9); }
 
 
 /* Tema geçişi yumuşak olsun */
@@ -1564,7 +1569,8 @@ button { background: none; border: 0; cursor: pointer; }
   width: 56px;
   height: 56px;
   border-radius: 50%;
-  background: var(--green);
+  /* Tanınırlık için tema renginden bağımsız, WhatsApp'ın kendi yeşili */
+  background: #25D366;
   color: #fff;
   box-shadow: 0 10px 30px rgba(var(--shadow-rgb), .28);
   opacity: 0;
