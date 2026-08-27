@@ -30,14 +30,14 @@
   /* Yerel varsayilanlar. Supabase yapilandirilmissa bunlarin yerini
      window.PEONY_DATA.services alir. */
   var SERVICES_DEFAULT = [
-    { id: 'thai',   img: 'assets/art/svc-thai.svg'   },
-    { id: 'oil',    img: 'assets/art/svc-oil.svg'    },
-    { id: 'aroma',  img: 'assets/art/svc-aroma.svg'  },
-    { id: 'foot',   img: 'assets/art/svc-foot.svg'   },
-    { id: 'back',   img: 'assets/art/svc-back.svg'   },
-    { id: 'herbal', img: 'assets/art/svc-herbal.svg' },
-    { id: 'scrub',  img: 'assets/art/svc-scrub.svg'  },
-    { id: 'facial', img: 'assets/art/svc-facial.svg' }
+    { id: 'thai',   img: 'media/svc-thai.jpg?v=2'   },
+    { id: 'oil',    img: 'media/svc-oil.jpg?v=2'    },
+    { id: 'aroma',  img: 'media/svc-aroma.jpg?v=2'  },
+    { id: 'foot',   img: 'media/svc-foot.jpg?v=2'   },
+    { id: 'back',   img: 'media/svc-back.jpg?v=2'   },
+    { id: 'herbal', img: 'media/svc-herbal.jpg?v=2' },
+    { id: 'scrub',  img: 'media/svc-scrub.jpg?v=2'  },
+    { id: 'facial', img: 'media/svc-facial.jpg?v=2' }
   ];
 
   var TBD = '<span class="tbd">-doldurulacak-</span>';

@@ -33,26 +33,43 @@
     (raw.content || []).forEach(function (r) { out.content[r.key] = r.value || {}; });
     (raw.settings || []).forEach(function (r) { out.settings[r.key] = r.value || ''; });
 
-    var live = function (rows) {
-      return (rows || []).filter(function (r) { return r.is_active !== false; })
-                         .sort(function (a, b) { return (a.position || 0) - (b.position || 0); });
+    /* Panelde yanlışlıkla eklenmiş boş satırlar siteye düşmesin: içeriği
+       olmayan kayıtlar hem listeleri şişiriyor hem de (28 boş yorum örneğinde
+       olduğu gibi) sayfayı yatayda taşırıyordu. */
+    var filled = function (v) {
+      if (v === null || v === undefined) return false;
+      if (typeof v === 'string') return v.trim() !== '';
+      if (typeof v === 'object') {
+        return Object.keys(v).some(function (k) {
+          var x = v[k];
+          return typeof x === 'string' ? x.trim() !== '' : !!x;
+        });
+      }
+      return !!v;
     };
 
-    out.services = live(raw.services).map(function (r) {
+    var live = function (rows, hasContent) {
+      return (rows || [])
+        .filter(function (r) { return r.is_active !== false; })
+        .filter(function (r) { return hasContent ? hasContent(r) : true; })
+        .sort(function (a, b) { return (a.position || 0) - (b.position || 0); });
+    };
+
+    out.services = live(raw.services, function (r) { return filled(r.slug) && filled(r.name); }).map(function (r) {
       return { slug: r.slug, img: r.image_url, duration: r.duration, price: r.price,
                name: r.name || {}, description: r.description || {} };
     });
-    out.plans = live(raw.plans).map(function (r) {
+    out.plans = live(raw.plans, function (r) { return filled(r.name); }).map(function (r) {
       return { featured: !!r.featured, price: r.price, per: r.per,
                name: r.name || {}, note: r.note || {}, items: r.items || {} };
     });
-    out.faqs = live(raw.faqs).map(function (r) {
+    out.faqs = live(raw.faqs, function (r) { return filled(r.question); }).map(function (r) {
       return { question: r.question || {}, answer: r.answer || {} };
     });
-    out.testimonials = live(raw.testimonials).map(function (r) {
+    out.testimonials = live(raw.testimonials, function (r) { return filled(r.body) || filled(r.author); }).map(function (r) {
       return { author: r.author, role: r.role, rating: r.rating || 5, body: r.body || {} };
     });
-    out.gallery = live(raw.gallery).map(function (r) {
+    out.gallery = live(raw.gallery, function (r) { return filled(r.image_url); }).map(function (r) {
       return { url: r.image_url, category: r.category || 'details', caption: r.caption || {} };
     });
     return out;
