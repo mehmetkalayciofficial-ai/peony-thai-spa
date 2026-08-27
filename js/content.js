@@ -120,9 +120,14 @@
       });
     }
 
+    /* Veriyi override'dan ÖNCE yayınla: override, peony:content olayını
+       tetikleyip kartları yeniden çizdiriyor ve çizim sırasında
+       window.PEONY_DATA okunuyor. Sonra atanırsa kartlar bir önceki
+       verinin görselleriyle kalıyordu. */
+    window.PEONY_DATA = data;
+
     window.I18N.override(patch, lists);
 
-    window.PEONY_DATA = data;
     applySettings(data.settings);
     applyMedia(data.settings);
     applyMap(data.settings);
